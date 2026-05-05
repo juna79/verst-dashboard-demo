@@ -29,9 +29,10 @@ main{padding:30px}.top{display:grid;grid-template-columns:1fr 320px;gap:20px;mar
 .timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.20);border-radius:24px;padding:18px;cursor:pointer;min-height:168px}.step:hover,.step.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}.step-icon{width:52px;height:52px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}.step b{display:block;font-size:16px;margin-bottom:9px}
 .row{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);border-radius:18px;padding:15px;margin:11px 0}.row span{display:block;color:rgba(255,255,255,.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:900}.row b{font-size:17px}.hash{font-family:monospace;font-size:14px!important;word-break:break-all}
 .btn{border:0;border-radius:16px;background:var(--green);color:#041007;padding:13px 16px;font-weight:1000;cursor:pointer}.btn.secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:white}
-.table{width:100%;border-collapse:collapse}.table th{text-align:left;color:rgba(255,255,255,.48);font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:12px}.table td{padding:14px 12px;border-top:1px solid rgba(255,255,255,.08);font-size:14px}.status{display:inline-block;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:950}.status.verified{background:rgba(74,222,128,.16);color:#86efac}.status.retired{background:rgba(243,201,105,.16);color:#f3c969}
+.table{width:100%;border-collapse:collapse}.table th{text-align:left;color:rgba(255,255,255,.48);font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:12px}.table td{padding:14px 12px;border-top:1px solid rgba(255,255,255,.08);font-size:14px}.table tr{cursor:pointer}.table tbody tr:hover,.table tbody tr.active{background:rgba(74,222,128,.10)}
+.status{display:inline-block;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:950}.status.verified{background:rgba(74,222,128,.16);color:#86efac}.status.retired{background:rgba(243,201,105,.16);color:#f3c969}
 .qr{width:230px;height:230px;border-radius:26px;margin:10px auto 20px;background:linear-gradient(90deg,#111 10px,transparent 10px) 0 0/28px 28px,linear-gradient(#111 10px,transparent 10px) 0 0/28px 28px,white;border:14px solid white}
-.certificate-paper{background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(248,242,223,.96));color:#15202b;border-radius:26px;padding:40px;border:1px solid rgba(243,201,105,.65)}.cert-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:18px;margin-bottom:28px}.cert-head h3{margin:5px 0 0;font-size:32px}.cert-kicker{font-size:12px;letter-spacing:5px;color:rgba(0,0,0,.52);font-weight:900}.cert-badge{background:rgba(243,201,105,.55);border-radius:999px;padding:12px 18px;font-weight:1000}.cert-project{text-align:center;font-size:26px;font-weight:1000;margin-bottom:22px}.cert-tonnes{text-align:center;font-size:54px;font-weight:1000}.cert-sub{text-align:center;color:rgba(0,0,0,.58);font-weight:800}.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;text-align:center;margin-top:34px}.seal{width:105px;height:105px;border-radius:50%;border:5px solid #b45309;color:#92400e;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:1000;transform:rotate(-8deg)}
+.certificate-paper{background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(248,242,223,.96));color:#15202b;border-radius:26px;padding:40px;border:1px solid rgba(243,201,105,.65)}.cert-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:18px;margin-bottom:28px}.cert-head h3{margin:5px 0 0;font-size:32px}.cert-kicker{font-size:12px;letter-spacing:5px;color:rgba(0,0,0,.52);font-weight:900}.cert-badge{background:rgba(243,201,105,.55);border-radius:999px;padding:12px 18px;font-weight:1000}.cert-badge.retired{background:rgba(0,0,0,.12);color:#92400e}.cert-project{text-align:center;font-size:26px;font-weight:1000;margin-bottom:22px}.cert-tonnes{text-align:center;font-size:54px;font-weight:1000}.cert-sub{text-align:center;color:rgba(0,0,0,.58);font-weight:800}.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;text-align:center;margin-top:34px}.seal{width:105px;height:105px;border-radius:50%;border:5px solid #b45309;color:#92400e;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:1000;transform:rotate(-8deg)}
 .hidden{display:none}.caption{color:var(--green);text-align:right;font-weight:900;margin:12px 0 0}
 @media(max-width:1100px){.app{grid-template-columns:1fr}.top,.grid2{grid-template-columns:1fr}.grid5,.grid4,.grid3,.project-list,.timeline-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){main,aside{padding:18px}.grid5,.grid4,.grid3,.project-list,.timeline-grid,.cert-grid,.impact-row{grid-template-columns:1fr}.cert-tonnes{font-size:40px}}
@@ -157,12 +158,17 @@ main{padding:30px}.top{display:grid;grid-template-columns:1fr 320px;gap:20px;mar
 
 <section id="certificates" class="hidden">
 <div class="grid2">
-<div class="card"><h2 class="section-title">Certificate archive</h2><table class="table"><thead><tr><th>Certificate</th><th>Project</th><th>Credits</th><th>Status</th><th>Date</th></tr></thead><tbody id="certTable"></tbody></table></div>
+<div class="card">
+<h2 class="section-title">Certificate archive</h2>
+<p class="small">Click any certificate below to open the certificate preview.</p>
+<table class="table"><thead><tr><th>Certificate</th><th>Project</th><th>Credits</th><th>Status</th><th>Date</th></tr></thead><tbody id="certTable"></tbody></table>
+</div>
 <div class="card"><div class="certificate-paper">
-<div class="cert-head"><div><div class="cert-kicker">CERTIFICATE</div><h3 id="certStandard"></h3></div><div class="cert-badge">VERIFIED</div></div>
-<div class="cert-project" id="certProject"></div><div class="cert-tonnes" id="certTonnes"></div><div class="cert-sub">Carbon Credits Issued / Held</div>
-<div class="cert-grid"><div><b>Issuance Date</b><br><span id="certDate"></span></div><div><b>Standard</b><br><span id="certStd2"></span></div><div><b>Project ID</b><br><span id="certPid"></span></div></div>
-<div style="display:flex;justify-content:space-between;align-items:end;margin-top:38px"><div style="font-family:Georgia,serif;font-size:32px;font-style:italic">Verified</div><div class="seal">VERIFIED<br>CREDIT</div></div>
+<div class="cert-head"><div><div class="cert-kicker">CERTIFICATE</div><h3 id="certStandard"></h3></div><div class="cert-badge" id="certBadge">VERIFIED</div></div>
+<div class="cert-project" id="certProject"></div><div class="cert-tonnes" id="certTonnes"></div><div class="cert-sub" id="certSub">Carbon Credits Issued / Held</div>
+<div class="cert-grid"><div><b>Certificate ID</b><br><span id="certId"></span></div><div><b>Issuance Date</b><br><span id="certDate"></span></div><div><b>Project ID</b><br><span id="certPid"></span></div></div>
+<div class="cert-grid"><div><b>Standard</b><br><span id="certStd2"></span></div><div><b>Owner</b><br><span>GreenLeaf Foods Ltd</span></div><div><b>Status</b><br><span id="certStatusText"></span></div></div>
+<div style="display:flex;justify-content:space-between;align-items:end;margin-top:38px"><div style="font-family:Georgia,serif;font-size:32px;font-style:italic" id="certSignature">Verified</div><div class="seal" id="certSeal">VERIFIED<br>CREDIT</div></div>
 </div></div>
 </div>
 </section>
@@ -179,14 +185,16 @@ const projects=[
 ];
 
 const certs=[
-["CERT-2025-001","Western Kenya Clean Cooking","120,000","Verified","Jan 2026"],
-["CERT-2025-002","Nakuru Soil Carbon","32,500","Verified","Dec 2025"],
-["CERT-2024-009","Aberdare Forest Restoration","18,000","Retired","Oct 2024"],
-["CERT-2025-004","Lake Victoria Blue Carbon","9,800","Verified","Nov 2025"],
-["CERT-2025-005","Turkana Solar Mini-Grid","4,200","Verified","Sep 2025"]
+{cert:"CERT-2026-001",projectIndex:0,project:"Western Kenya Clean Cooking",credits:"120,000",status:"Verified",date:"20 Jan 2026",standard:"Gold Standard",registry:"GS-13244-2025",sub:"Carbon Credits Issued / Held"},
+{cert:"CERT-2025-002",projectIndex:1,project:"Nakuru Soil Carbon",credits:"32,500",status:"Verified",date:"28 Dec 2025",standard:"Verra VCS",registry:"VCS-90421-2025",sub:"Carbon Credits Issued / Held"},
+{cert:"CERT-2024-009",projectIndex:2,project:"Aberdare Forest Restoration",credits:"18,000",status:"Retired",date:"20 Oct 2024",standard:"Plan Vivo",registry:"PV-ABR-7781-2024",sub:"Carbon Credits Retired / Claimed"},
+{cert:"CERT-2025-004",projectIndex:3,project:"Lake Victoria Blue Carbon",credits:"9,800",status:"Verified",date:"24 Nov 2025",standard:"Gold Standard",registry:"GS-BC-5582-2025",sub:"Carbon Credits Issued / Held"},
+{cert:"CERT-2025-005",projectIndex:4,project:"Turkana Solar Mini-Grid",credits:"4,200",status:"Verified",date:"30 Sep 2025",standard:"Verra VCS",registry:"VCS-TUR-2290-2025",sub:"Carbon Credits Issued / Held"},
+{cert:"RET-2025-011",projectIndex:0,project:"Western Kenya Clean Cooking",credits:"24,000",status:"Retired",date:"12 Mar 2026",standard:"Gold Standard",registry:"GS-13244-2025",sub:"Carbon Credits Retired / Claimed"}
 ];
 
 let selected=0;
+let selectedCert=0;
 
 function show(id,btn){
 ["portfolio","projects","timeline","report","certificates"].forEach(x=>document.getElementById(x).classList.add("hidden"));
@@ -258,12 +266,8 @@ document.getElementById("reportProject").innerText=p.full;
 document.getElementById("reportId").innerText=p.report;
 document.getElementById("reportHash").innerText=p.hash;
 
-document.getElementById("certProject").innerText=p.full;
-document.getElementById("certTonnes").innerText=p.credits+" tCO₂e";
-document.getElementById("certStandard").innerText=p.standard;
-document.getElementById("certStd2").innerText=p.standard;
-document.getElementById("certPid").innerText=p.registry;
-document.getElementById("certDate").innerText=p.verified;
+const matchingCert = certs.findIndex(c => c.projectIndex === i);
+if(matchingCert >= 0) selectCertificate(matchingCert, false);
 
 buildTimeline();
 }
@@ -291,14 +295,52 @@ document.getElementById("stepDetail").innerHTML=`
 }
 
 function renderCerts(){
-document.getElementById("certTable").innerHTML=certs.map(c=>`
-<tr><td><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[2]}</td><td><span class="status ${c[3]==="Retired"?"retired":"verified"}">${c[3]}</span></td><td>${c[4]}</td></tr>`).join("");
+document.getElementById("certTable").innerHTML=certs.map((c,i)=>`
+<tr onclick="selectCertificate(${i}, true)" class="${i===selectedCert?'active':''}">
+<td><b>${c.cert}</b></td>
+<td>${c.project}</td>
+<td>${c.credits}</td>
+<td><span class="status ${c.status==="Retired"?"retired":"verified"}">${c.status}</span></td>
+<td>${c.date}</td>
+</tr>`).join("");
+}
+
+function selectCertificate(i, alsoSelectProject){
+selectedCert=i;
+const c=certs[i];
+const p=projects[c.projectIndex];
+
+if(alsoSelectProject){
+selected=c.projectIndex;
+renderProjectButtons();
+renderProjectGallery();
+}
+
+document.getElementById("certId").innerText=c.cert;
+document.getElementById("certProject").innerText=p.full;
+document.getElementById("certTonnes").innerText=c.credits+" tCO₂e";
+document.getElementById("certStandard").innerText=c.standard;
+document.getElementById("certStd2").innerText=c.standard;
+document.getElementById("certPid").innerText=c.registry;
+document.getElementById("certDate").innerText=c.date;
+document.getElementById("certStatusText").innerText=c.status;
+document.getElementById("certSub").innerText=c.sub;
+
+const badge=document.getElementById("certBadge");
+badge.innerText=c.status.toUpperCase();
+badge.className="cert-badge "+(c.status==="Retired"?"retired":"");
+
+document.getElementById("certSignature").innerText=c.status==="Retired"?"Retired":"Verified";
+document.getElementById("certSeal").innerHTML=c.status==="Retired"?"RETIRED<br>CREDIT":"VERIFIED<br>CREDIT";
+
+renderCerts();
 }
 
 renderProjectButtons();
 renderProjectGallery();
 renderCerts();
 selectProject(0);
+selectCertificate(0,false);
 </script>
 </body>
 </html>
