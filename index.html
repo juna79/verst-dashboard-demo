@@ -1,432 +1,1013 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  CheckCircle2,
-  Leaf,
-  ShieldCheck,
-  FileText,
-  BarChart3,
-  Award,
-  Clock3,
-  MapPin,
-  Users,
-  Flame,
-  QrCode,
-  ExternalLink,
-  Copy,
-  ChevronRight,
-  Download,
-  Eye,
-  Home,
-} from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verst Carbon — Verification Layer Demo</title>
 
-const steps = [
-  {
-    key: "monitoring",
-    label: "Monitoring",
-    title: "Monitoring Completed",
-    date: "15 Oct 2025",
-    actor: "Verst Carbon Field Team",
-    summary:
-      "Household usage data, stove distribution records, and field activity logs were collected across Kisumu and Homa Bay.",
-    proof: "Field dataset hash anchored",
-    hash: "sha256:9c1f...8a42",
-    icon: BarChart3,
-  },
-  {
-    key: "reporting",
-    label: "Reporting",
-    title: "Report Submitted",
-    date: "10 Nov 2025",
-    actor: "Verst Carbon MRV Team",
-    summary:
-      "Monitoring data was compiled into a structured carbon report using the approved methodology for improved cookstoves.",
-    proof: "MRV report fingerprint created",
-    hash: "sha256:a7f3...d9c3",
-    icon: FileText,
-  },
-  {
-    key: "verification",
-    label: "Verification",
-    title: "Verified by Gold Standard",
-    date: "05 Dec 2025",
-    actor: "Independent Verifier",
-    summary:
-      "The submitted report and supporting data were reviewed, checked, and approved against the relevant carbon standard.",
-    proof: "Verification event recorded",
-    hash: "sha256:f182...6bb0",
-    icon: ShieldCheck,
-  },
-  {
-    key: "issuance",
-    label: "Issuance",
-    title: "Credits Issued",
-    date: "20 Jan 2026",
-    actor: "Gold Standard Registry",
-    summary:
-      "120,000 tCO₂e carbon credits were issued for the 2025 vintage and linked back to the verified project record.",
-    proof: "Certificate + registry reference linked",
-    hash: "sha256:51ac...102e",
-    icon: Award,
-  },
-];
+  <style>
+    * { box-sizing: border-box; }
 
-const views = [
-  { key: "overview", label: "Project Overview", icon: Home },
-  { key: "timeline", label: "MRV Timeline", icon: Clock3 },
-  { key: "report", label: "Report Integrity", icon: FileText },
-  { key: "certificate", label: "Certificate", icon: Award },
-];
+    :root {
+      --bg: #06101d;
+      --panel: rgba(255,255,255,0.055);
+      --panel2: rgba(255,255,255,0.085);
+      --line: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.62);
+      --soft: rgba(255,255,255,0.78);
+      --green: #4ade80;
+      --green2: #22c55e;
+      --gold: #f3c969;
+      --red: #ef4444;
+    }
 
-export default function VerstClickableWorkflowDemo() {
-  const [view, setView] = useState("overview");
-  const [activeStep, setActiveStep] = useState(steps[0]);
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: white;
+    }
 
-  return (
-    <div className="min-h-screen bg-[#07101d] text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,212,107,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(212,175,55,0.08),transparent_30%)]" />
-      <div className="relative grid min-h-screen grid-cols-1 lg:grid-cols-[280px_1fr]">
-        <aside className="border-r border-white/10 bg-black/20 p-5 backdrop-blur-xl">
-          <div className="mb-8 flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-green-400/20">
-              <Leaf className="h-7 w-7 text-green-400" />
-            </div>
-            <div>
-              <div className="text-xl font-bold tracking-wide">VERST</div>
-              <div className="text-xs tracking-[0.3em] text-white/70">CARBON</div>
-            </div>
-          </div>
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      background:
+        radial-gradient(circle at 80% 5%, rgba(74,222,128,.18), transparent 34%),
+        radial-gradient(circle at 10% 90%, rgba(243,201,105,.10), transparent 30%),
+        linear-gradient(135deg, #050b14 0%, #081525 55%, #06101d 100%);
+    }
 
-          <nav className="space-y-2">
-            {views.map((item) => {
-              const Icon = item.icon;
-              const active = view === item.key;
-              return (
-                <button
-                  key={item.key}
-                  onClick={() => setView(item.key)}
-                  className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition ${
-                    active
-                      ? "bg-green-400/18 text-green-300 shadow-lg shadow-green-500/10"
-                      : "text-white/70 hover:bg-white/5 hover:text-white"
-                  }`}
-                >
-                  <Icon className="h-5 w-5" />
-                  <span className="text-sm font-medium">{item.label}</span>
-                </button>
-              );
-            })}
-          </nav>
+    aside {
+      border-right: 1px solid var(--line);
+      padding: 28px 22px;
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(20px);
+    }
 
-          <Card className="mt-10 rounded-3xl border-green-400/20 bg-green-400/10 text-white">
-            <CardContent className="p-5">
-              <p className="text-lg font-semibold leading-tight">Verifiable.<br />Transparent.<br />Trusted Impact.</p>
-              <div className="mt-6 flex items-center gap-2 text-xs text-white/60">
-                <CheckCircle2 className="h-4 w-4 text-green-400" /> Powered by JSON + proof layer
-              </div>
-            </CardContent>
-          </Card>
-        </aside>
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
 
-        <main className="p-5 md:p-8">
-          <header className="mb-6 grid gap-5 lg:grid-cols-[1fr_320px]">
-            <div>
-              <div className="mb-2 text-sm font-semibold uppercase tracking-wider text-green-400">Project</div>
-              <h1 className="text-3xl font-bold md:text-5xl">Western Kenya Clean Cooking Project</h1>
-              <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/75">
-                <span className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2"><MapPin className="h-4 w-4" /> Kisumu & Homa Bay, Kenya</span>
-                <span className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2"><Flame className="h-4 w-4" /> Improved Cookstoves</span>
-                <span className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2"><Leaf className="h-4 w-4" /> Vintage 2025</span>
-              </div>
-            </div>
-            <Card className="rounded-3xl border-green-400/25 bg-green-500/15 text-white shadow-2xl shadow-green-600/10">
-              <CardContent className="flex items-center gap-4 p-5">
-                <CheckCircle2 className="h-16 w-16 text-green-300" />
-                <div>
-                  <div className="text-2xl font-black">VERIFIED</div>
-                  <div className="text-sm text-green-100/80">Verified by Gold Standard</div>
-                </div>
-              </CardContent>
-            </Card>
-          </header>
+    .logo-mark {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #4ade80, #16a34a);
+      display: grid;
+      place-items: center;
+      color: #031009;
+      font-weight: 1000;
+      font-size: 32px;
+      box-shadow: 0 18px 40px rgba(34,197,94,.22);
+    }
 
-          <motion.div
-            key={view}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            {view === "overview" && <Overview setView={setView} setActiveStep={setActiveStep} />}
-            {view === "timeline" && <Timeline activeStep={activeStep} setActiveStep={setActiveStep} />}
-            {view === "report" && <ReportIntegrity />}
-            {view === "certificate" && <Certificate />}
-          </motion.div>
-        </main>
-      </div>
-    </div>
-  );
-}
+    .logo-title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
 
-function MetricCard({ icon: Icon, label, value, sub }) {
-  return (
-    <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-      <CardContent className="flex gap-4 p-5">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-green-400/15">
-          <Icon className="h-7 w-7 text-green-300" />
-        </div>
+    .logo-sub {
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,.66);
+    }
+
+    nav button {
+      width: 100%;
+      border: 0;
+      border-radius: 18px;
+      background: transparent;
+      color: rgba(255,255,255,.66);
+      padding: 15px 16px;
+      margin: 5px 0;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 800;
+      transition: .2s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: rgba(74,222,128,.16);
+      color: #86efac;
+      box-shadow: inset 3px 0 0 var(--green);
+    }
+
+    .side-card {
+      margin-top: 42px;
+      border: 1px solid rgba(74,222,128,.25);
+      background:
+        linear-gradient(180deg, rgba(74,222,128,.12), rgba(74,222,128,.05)),
+        radial-gradient(circle at bottom right, rgba(74,222,128,.22), transparent 38%);
+      border-radius: 28px;
+      padding: 24px;
+      min-height: 205px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .side-card h3 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .powered {
+      font-size: 13px;
+      color: rgba(255,255,255,.60);
+    }
+
+    main {
+      padding: 32px;
+    }
+
+    .top {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .kicker {
+      color: var(--green);
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-size: 13px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 4vw, 58px);
+      line-height: 1.02;
+      margin: 8px 0 14px;
+      letter-spacing: -1.5px;
+    }
+
+    .pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.75);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .verified-card {
+      border: 1px solid rgba(74,222,128,.28);
+      background:
+        linear-gradient(135deg, rgba(34,197,94,.23), rgba(9,20,34,.7));
+      border-radius: 28px;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 28px 70px rgba(34,197,94,.13);
+    }
+
+    .big-check {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #041007;
+      display: grid;
+      place-items: center;
+      font-size: 44px;
+      font-weight: 1000;
+    }
+
+    .verified-card b {
+      font-size: 28px;
+      letter-spacing: .5px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .soft {
+      color: var(--soft);
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 34px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      min-height: 270px;
+    }
+
+    .hero-copy {
+      padding: 30px;
+    }
+
+    .hero-copy h2 {
+      font-size: 30px;
+      margin: 0 0 12px;
+      letter-spacing: -0.6px;
+    }
+
+    .hero-copy p {
+      color: rgba(255,255,255,.68);
+      line-height: 1.7;
+      max-width: 720px;
+    }
+
+    .hero-image {
+      position: relative;
+      min-height: 270px;
+      background:
+        linear-gradient(90deg, rgba(6,16,29,.92), rgba(6,16,29,.15)),
+        url("https://images.unsplash.com/photo-1595757739419-29f4424885e7?auto=format&fit=crop&w=1200&q=85");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-image::after {
+      content: "Buyer-facing verification view";
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: rgba(255,255,255,.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .grid4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.18);
+    }
+
+    .metric-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 19px;
+      background: rgba(74,222,128,.16);
+      display: grid;
+      place-items: center;
+      font-size: 27px;
+      margin-bottom: 14px;
+    }
+
+    .metric-label {
+      color: rgba(255,255,255,.58);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .metric-value {
+      font-size: 30px;
+      font-weight: 1000;
+      margin: 6px 0;
+      letter-spacing: -0.6px;
+    }
+
+    .section-title {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 14px;
+      font-weight: 1000;
+      margin: 0 0 18px;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 12px;
+    }
+
+    .step {
+      border: 1px solid rgba(255,255,255,.11);
+      background: rgba(0,0,0,.20);
+      border-radius: 24px;
+      padding: 18px;
+      cursor: pointer;
+      transition: .2s ease;
+      min-height: 175px;
+    }
+
+    .step:hover,
+    .step.active {
+      border-color: rgba(74,222,128,.55);
+      background: rgba(74,222,128,.12);
+      transform: translateY(-2px);
+    }
+
+    .step-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: rgba(74,222,128,.16);
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      margin-bottom: 13px;
+    }
+
+    .step b {
+      display: block;
+      font-size: 16px;
+      line-height: 1.25;
+      margin-bottom: 9px;
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .small {
+      font-size: 13px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.55;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 16px;
+      background: var(--green);
+      color: #041007;
+      padding: 13px 16px;
+      font-weight: 1000;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: #86efac;
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      color: white;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .impact-box {
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .impact-box b {
+      display: block;
+      color: var(--green);
+      font-size: 25px;
+      margin-bottom: 4px;
+    }
+
+    .photo-card {
+      min-height: 330px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.65)),
+        url("https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1200&q=85");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: end;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .photo-card div {
+      background: rgba(0,0,0,.45);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 20px;
+      padding: 16px;
+      backdrop-filter: blur(12px);
+    }
+
+    .row {
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      border-radius: 18px;
+      padding: 16px;
+      margin: 12px 0;
+    }
+
+    .row span {
+      display: block;
+      color: rgba(255,255,255,.45);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-weight: 900;
+    }
+
+    .row b {
+      font-size: 18px;
+    }
+
+    .hash {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 15px !important;
+      word-break: break-all;
+    }
+
+    .qr {
+      width: 230px;
+      height: 230px;
+      border-radius: 26px;
+      margin: 10px auto 20px;
+      background:
+        linear-gradient(90deg,#111 10px,transparent 10px) 0 0/28px 28px,
+        linear-gradient(#111 10px,transparent 10px) 0 0/28px 28px,
+        white;
+      position: relative;
+      border: 14px solid white;
+      box-shadow: 0 25px 60px rgba(0,0,0,.35);
+    }
+
+    .qr::before,
+    .qr::after {
+      content: "";
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 12px solid #111;
+      background: white;
+    }
+
+    .qr::before {
+      top: 8px;
+      left: 8px;
+    }
+
+    .qr::after {
+      right: 8px;
+      bottom: 8px;
+    }
+
+    .certificate-paper {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.86), rgba(248,242,223,.96)),
+        radial-gradient(circle at 30% 30%, rgba(243,201,105,.25), transparent 35%);
+      color: #15202b;
+      border-radius: 26px;
+      padding: 42px;
+      border: 1px solid rgba(243,201,105,.65);
+      box-shadow: 0 35px 80px rgba(0,0,0,.32);
+    }
+
+    .cert-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,.12);
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+    }
+
+    .cert-head h3 {
+      margin: 5px 0 0;
+      font-size: 34px;
+      letter-spacing: -1px;
+    }
+
+    .cert-kicker {
+      font-size: 12px;
+      letter-spacing: 5px;
+      color: rgba(0,0,0,.52);
+      font-weight: 900;
+    }
+
+    .cert-badge {
+      background: rgba(243,201,105,.55);
+      border: 1px solid rgba(146,64,14,.25);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 1000;
+    }
+
+    .cert-project {
+      text-align: center;
+      font-size: 27px;
+      font-weight: 1000;
+      margin-bottom: 24px;
+    }
+
+    .cert-tonnes {
+      text-align: center;
+      font-size: 58px;
+      font-weight: 1000;
+      letter-spacing: -1.5px;
+    }
+
+    .cert-sub {
+      text-align: center;
+      color: rgba(0,0,0,.58);
+      font-weight: 800;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 15px;
+      text-align: center;
+      margin-top: 38px;
+    }
+
+    .cert-grid div {
+      border-top: 1px solid rgba(0,0,0,.12);
+      padding-top: 14px;
+      font-size: 14px;
+    }
+
+    .cert-sign {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-top: 46px;
+    }
+
+    .signature {
+      font-family: Georgia, serif;
+      font-size: 34px;
+      font-style: italic;
+    }
+
+    .seal {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      border: 5px solid #b45309;
+      color: #92400e;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 1000;
+      transform: rotate(-8deg);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .caption {
+      color: var(--green);
+      text-align: right;
+      font-weight: 900;
+      margin: 12px 0 0;
+    }
+
+    @media(max-width: 1050px) {
+      .app { grid-template-columns: 1fr; }
+      aside { position: relative; }
+      .top, .hero, .grid2 { grid-template-columns: 1fr; }
+      .grid4, .timeline-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
+    @media(max-width: 620px) {
+      main { padding: 18px; }
+      aside { padding: 18px; }
+      .grid4, .timeline-grid, .impact-grid, .cert-grid { grid-template-columns: 1fr; }
+      .verified-card { align-items: flex-start; }
+      .cert-tonnes { font-size: 42px; }
+      .certificate-paper { padding: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <aside>
+      <div class="logo">
+        <div class="logo-mark">V</div>
         <div>
-          <div className="text-sm text-white/65">{label}</div>
-          <div className="mt-1 text-2xl font-bold">{value}</div>
-          <div className="mt-1 text-xs text-white/55">{sub}</div>
+          <div class="logo-title">VERST</div>
+          <div class="logo-sub">CARBON</div>
         </div>
-      </CardContent>
-    </Card>
-  );
-}
-
-function Overview({ setView, setActiveStep }) {
-  return (
-    <div className="space-y-5">
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <MetricCard icon={Leaf} label="Total Credits Issued" value="120,000" sub="tCO₂e" />
-        <MetricCard icon={Award} label="Verification Standard" value="Gold Standard" sub="GS 13244" />
-        <MetricCard icon={ShieldCheck} label="Status" value="Verified & Issued" sub="Credits are live and tradable" />
-        <MetricCard icon={Clock3} label="Last Verified" value="20 Jan 2026" sub="Next verification: Jan 2027" />
       </div>
 
-      <div className="grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
-        <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-          <CardContent className="p-6">
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="font-semibold uppercase tracking-wide text-green-400">Project Timeline</h2>
-              <Button onClick={() => setView("timeline")} className="rounded-2xl bg-green-500 text-black hover:bg-green-400">Open workflow <ChevronRight className="ml-1 h-4 w-4" /></Button>
-            </div>
-            <div className="grid gap-4 md:grid-cols-4">
-              {steps.map((step) => {
-                const Icon = step.icon;
-                return (
-                  <button
-                    key={step.key}
-                    onClick={() => {
-                      setActiveStep(step);
-                      setView("timeline");
-                    }}
-                    className="rounded-3xl border border-white/10 bg-black/20 p-4 text-left transition hover:border-green-400/50 hover:bg-green-400/10"
-                  >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-green-400/15">
-                      <Icon className="h-6 w-6 text-green-300" />
-                    </div>
-                    <div className="font-bold">{step.title}</div>
-                    <div className="mt-2 text-sm text-green-300">{step.date}</div>
-                    <div className="mt-1 text-xs text-white/55">{step.actor}</div>
-                  </button>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
+      <nav>
+        <button class="active" onclick="show('overview', this)">🏠 Project Overview</button>
+        <button onclick="show('timeline', this)">⏱ MRV Timeline</button>
+        <button onclick="show('report', this)">📄 Report Integrity</button>
+        <button onclick="show('certificate', this)">🏅 Certificate</button>
+      </nav>
 
-        <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-          <CardContent className="p-6">
-            <h2 className="mb-4 font-semibold uppercase tracking-wide text-green-400">Project Story</h2>
-            <p className="text-sm leading-7 text-white/70">
-              This project distributes and promotes improved cookstoves to households in Kisumu and Homa Bay, reducing reliance on traditional biomass and improving health, environment and livelihoods.
-            </p>
-            <div className="mt-7 grid grid-cols-3 gap-3 text-center">
-              <ImpactStat icon={Users} value="58,600" label="Households" />
-              <ImpactStat icon={Leaf} value="120,000" label="tCO₂e" />
-              <ImpactStat icon={MapPin} value="2" label="Counties" />
-            </div>
-          </CardContent>
-        </Card>
+      <div class="side-card">
+        <h3>Verifiable.<br>Transparent.<br>Trusted Impact.</h3>
+        <div class="powered">Powered by JSON + proof layer</div>
       </div>
+    </aside>
 
-      <div className="grid gap-5 xl:grid-cols-2">
-        <ClickablePanel title="Report Integrity" button="Verify report" onClick={() => setView("report")}>
-          Original MRV report fingerprinted with SHA-256 and linked to a buyer-facing verification page.
-        </ClickablePanel>
-        <ClickablePanel title="Certificate View" button="View certificate" onClick={() => setView("certificate")}>
-          Issued credits shown through a clean certificate layer connected to the registry reference and audit trail.
-        </ClickablePanel>
-      </div>
-    </div>
-  );
-}
-
-function ImpactStat({ icon: Icon, value, label }) {
-  return (
-    <div className="rounded-2xl bg-black/20 p-4">
-      <Icon className="mx-auto mb-2 h-5 w-5 text-green-300" />
-      <div className="text-xl font-bold text-green-300">{value}</div>
-      <div className="text-xs text-white/55">{label}</div>
-    </div>
-  );
-}
-
-function ClickablePanel({ title, button, onClick, children }) {
-  return (
-    <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-      <CardContent className="flex items-center justify-between gap-4 p-6">
+    <main>
+      <section class="top">
         <div>
-          <h3 className="text-xl font-bold">{title}</h3>
-          <p className="mt-2 max-w-xl text-sm leading-6 text-white/65">{children}</p>
+          <div class="kicker">Buyer verification demo</div>
+          <h1>Western Kenya Clean Cooking Project</h1>
+          <div class="pills">
+            <span class="pill">📍 Kisumu & Homa Bay, Kenya</span>
+            <span class="pill">🔥 Improved Cookstoves</span>
+            <span class="pill">🌿 2025 Vintage</span>
+            <span class="pill">Registry ID: GS-13244-2025</span>
+          </div>
         </div>
-        <Button onClick={onClick} variant="outline" className="rounded-2xl border-green-400/30 bg-green-400/10 text-green-200 hover:bg-green-400/20">
-          {button} <ChevronRight className="ml-1 h-4 w-4" />
-        </Button>
-      </CardContent>
-    </Card>
-  );
-}
 
-function Timeline({ activeStep, setActiveStep }) {
-  const Icon = activeStep.icon;
-  return (
-    <div className="grid gap-5 xl:grid-cols-[1fr_420px]">
-      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-        <CardContent className="p-6">
-          <h2 className="mb-2 text-2xl font-bold">MRV Workflow</h2>
-          <p className="mb-8 text-sm text-white/60">Click each stage to show what was checked, who handled it, and what proof was created.</p>
-          <div className="relative grid gap-4 md:grid-cols-4">
-            <div className="absolute left-8 right-8 top-8 hidden h-[2px] bg-green-400/30 md:block" />
-            {steps.map((step) => {
-              const StepIcon = step.icon;
-              const active = activeStep.key === step.key;
-              return (
-                <button key={step.key} onClick={() => setActiveStep(step)} className="relative text-left">
-                  <div className={`mb-4 flex h-16 w-16 items-center justify-center rounded-3xl border transition ${active ? "border-green-300 bg-green-400/25" : "border-white/10 bg-black/30"}`}>
-                    <StepIcon className={`h-7 w-7 ${active ? "text-green-200" : "text-white/65"}`} />
-                  </div>
-                  <div className="font-bold">{step.label}</div>
-                  <div className="mt-1 text-sm text-green-300">{step.date}</div>
-                </button>
-              );
-            })}
+        <div class="verified-card">
+          <div class="big-check">✓</div>
+          <div>
+            <b>VERIFIED</b>
+            <div class="muted">Verified by Gold Standard</div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </section>
 
-      <Card className="rounded-3xl border-green-400/20 bg-green-400/10 text-white">
-        <CardContent className="p-6">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-3xl bg-green-400/20">
-            <Icon className="h-8 w-8 text-green-200" />
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="kicker">The idea</div>
+          <h2>Same project. Same MRV. Stronger buyer trust.</h2>
+          <p>
+            This is not a registry, not a trading platform, and not a replacement for MRV.
+            It is a buyer-facing verification layer that makes carbon project outputs easier
+            to understand, check, and trust.
+          </p>
+          <button class="btn" onclick="show('timeline')">Explore the workflow →</button>
+        </div>
+        <div class="hero-image"></div>
+      </section>
+
+      <section id="overview">
+        <div class="grid4">
+          <div class="card">
+            <div class="metric-icon">🌿</div>
+            <div class="metric-label">Total Credits Issued</div>
+            <div class="metric-value">120,000</div>
+            <div class="small">tCO₂e carbon credits</div>
           </div>
-          <h3 className="text-2xl font-black">{activeStep.title}</h3>
-          <div className="mt-2 text-green-200">{activeStep.date}</div>
-          <div className="mt-1 text-sm text-white/55">Handled by: {activeStep.actor}</div>
-          <p className="mt-6 leading-7 text-white/75">{activeStep.summary}</p>
-          <div className="mt-6 rounded-2xl border border-white/10 bg-black/25 p-4">
-            <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-green-300"><CheckCircle2 className="h-4 w-4" /> {activeStep.proof}</div>
-            <div className="flex items-center justify-between rounded-xl bg-black/35 px-3 py-2 font-mono text-xs text-white/60">
-              {activeStep.hash}
-              <Copy className="h-4 w-4" />
+
+          <div class="card">
+            <div class="metric-icon">⭐</div>
+            <div class="metric-label">Verification Standard</div>
+            <div class="metric-value">Gold Standard</div>
+            <div class="small">Project ref: GS 13244</div>
+          </div>
+
+          <div class="card">
+            <div class="metric-icon">🛡️</div>
+            <div class="metric-label">Status</div>
+            <div class="metric-value">Verified & Issued</div>
+            <div class="small">Credits live and tradable</div>
+          </div>
+
+          <div class="card">
+            <div class="metric-icon">📅</div>
+            <div class="metric-label">Last Verified</div>
+            <div class="metric-value">20 Jan 2026</div>
+            <div class="small">Next verification: Jan 2027</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <h2 class="section-title">Project timeline</h2>
+            <div class="timeline-grid">
+              <div class="step" onclick="show('timeline'); setStep(0)">
+                <div class="step-icon">📊</div>
+                <b>Monitoring Completed</b>
+                <div class="green">15 Oct 2025</div>
+                <div class="small">Verst Carbon Field Team</div>
+              </div>
+
+              <div class="step" onclick="show('timeline'); setStep(1)">
+                <div class="step-icon">📄</div>
+                <b>Report Submitted</b>
+                <div class="green">10 Nov 2025</div>
+                <div class="small">Verst Carbon MRV Team</div>
+              </div>
+
+              <div class="step" onclick="show('timeline'); setStep(2)">
+                <div class="step-icon">✅</div>
+                <b>Verified by Gold Standard</b>
+                <div class="green">05 Dec 2025</div>
+                <div class="small">Independent Verifier</div>
+              </div>
+
+              <div class="step" onclick="show('timeline'); setStep(3)">
+                <div class="step-icon">🏅</div>
+                <b>Credits Issued</b>
+                <div class="green">20 Jan 2026</div>
+                <div class="small">Gold Standard Registry</div>
+              </div>
             </div>
           </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
 
-function ReportIntegrity() {
-  return (
-    <div className="grid gap-5 xl:grid-cols-[1fr_420px]">
-      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-        <CardContent className="p-6">
-          <h2 className="text-2xl font-bold">Report Integrity</h2>
-          <p className="mt-2 text-sm text-white/60">Buyer or auditor checks whether the report is original and unchanged.</p>
-          <div className="mt-6 space-y-4">
-            <InfoRow label="Report ID" value="VERST-WKCCP-R-2025-001" />
-            <InfoRow label="Document Hash" value="a7f3e9cdb5a1...7e9b2f4d9c3" mono />
-            <InfoRow label="Method" value="SHA-256 document fingerprint" />
-            <InfoRow label="Status" value="Original document verified" success />
-          </div>
-          <div className="mt-7 rounded-3xl border border-green-400/20 bg-green-400/10 p-5">
-            <div className="flex items-start gap-3">
-              <ShieldCheck className="mt-1 h-6 w-6 text-green-300" />
+          <div class="card">
+            <h2 class="section-title">Project story</h2>
+            <div class="photo-card">
               <div>
-                <div className="font-bold text-green-200">Verification passed</div>
-                <p className="mt-2 text-sm leading-6 text-white/70">
-                  The report fingerprint matches the anchored record. This means the document being viewed is the same report that was submitted and verified.
+                <b>Clean cooking impact</b>
+                <p class="small">
+                  Improved cookstoves across Kisumu and Homa Bay, reducing biomass use,
+                  improving household air quality, and generating verified climate value.
                 </p>
               </div>
             </div>
+
+            <div class="impact-grid">
+              <div class="impact-box"><b>58,600</b><span class="small">Households reached</span></div>
+              <div class="impact-box"><b>120,000</b><span class="small">tCO₂e reduced</span></div>
+              <div class="impact-box"><b>2</b><span class="small">Counties covered</span></div>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-        <CardContent className="p-6 text-center">
-          <h3 className="mb-4 text-xl font-bold">Scan to verify</h3>
-          <div className="mx-auto flex h-56 w-56 items-center justify-center rounded-3xl bg-white p-4 text-black">
-            <QrCode className="h-44 w-44" />
+        <div class="grid2">
+          <div class="card">
+            <h2 class="section-title">Report integrity</h2>
+            <p class="small">
+              The original MRV report is fingerprinted using SHA-256 and linked to a verification page.
+              Buyers and auditors can check whether the document has changed.
+            </p>
+            <button class="btn" onclick="show('report')">Verify report →</button>
           </div>
-          <p className="mx-auto mt-5 max-w-xs text-sm text-white/60">QR opens a public verification page with the project timeline, report fingerprint and certificate reference.</p>
-          <Button className="mt-6 rounded-2xl bg-green-500 text-black hover:bg-green-400"><Eye className="mr-2 h-4 w-4" /> Open verification page</Button>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
 
-function InfoRow({ label, value, mono, success }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-      <div className="text-xs uppercase tracking-wider text-white/45">{label}</div>
-      <div className={`mt-2 flex items-center gap-2 text-lg ${mono ? "font-mono text-sm" : "font-semibold"} ${success ? "text-green-300" : "text-white"}`}>
-        {success && <CheckCircle2 className="h-5 w-5" />} {value}
-      </div>
-    </div>
-  );
-}
+          <div class="card">
+            <h2 class="section-title">Certificate view</h2>
+            <p class="small">
+              Issued credits are shown through a clean certificate layer connected to the registry
+              reference, project timeline, and verification trail.
+            </p>
+            <button class="btn" onclick="show('certificate')">View certificate →</button>
+          </div>
+        </div>
 
-function Certificate() {
-  return (
-    <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
-      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-        <CardContent className="p-6">
-          <div className="rounded-3xl border border-amber-300/40 bg-[#f8f2df] p-8 text-[#16202b] shadow-2xl">
-            <div className="mb-8 flex items-center justify-between border-b border-black/10 pb-5">
-              <div>
-                <div className="text-sm uppercase tracking-[0.35em] text-black/50">Certificate</div>
-                <div className="mt-2 text-3xl font-black">Gold Standard</div>
+        <div class="caption">Same project. Same data. Just finally visible and verifiable.</div>
+      </section>
+
+      <section id="timeline" class="hidden">
+        <div class="grid2">
+          <div class="card">
+            <h2 class="section-title">MRV workflow</h2>
+            <p class="small">
+              Click each stage to show what was checked, who handled it, and what proof was created.
+            </p>
+            <div class="timeline-grid" id="timelineSteps"></div>
+          </div>
+
+          <div class="card" id="stepDetail" style="background:rgba(74,222,128,.10); border-color:rgba(74,222,128,.28);"></div>
+        </div>
+      </section>
+
+      <section id="report" class="hidden">
+        <div class="grid2">
+          <div class="card">
+            <h2 class="section-title">Report integrity check</h2>
+            <p class="small">
+              A buyer or auditor checks whether the report is the original approved version.
+            </p>
+
+            <div class="row">
+              <span>Report ID</span>
+              <b>VERST-WKCCP-R-2025-001</b>
+            </div>
+
+            <div class="row">
+              <span>Document hash</span>
+              <b class="hash">sha256:a7f3e9cdb5a1e82f944b7e9b2f4d9c3</b>
+            </div>
+
+            <div class="row">
+              <span>Method</span>
+              <b>SHA-256 document fingerprint</b>
+            </div>
+
+            <div class="row">
+              <span>Status</span>
+              <b class="green">✓ Original document verified</b>
+            </div>
+          </div>
+
+          <div class="card" style="text-align:center;">
+            <h2 class="section-title">Scan to verify</h2>
+            <div class="qr"></div>
+            <p class="small">
+              QR opens a public verification page with the project timeline, report fingerprint,
+              and certificate reference.
+            </p>
+            <button class="btn">Open verification page</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="certificate" class="hidden">
+        <div class="grid2">
+          <div class="card">
+            <div class="certificate-paper">
+              <div class="cert-head">
+                <div>
+                  <div class="cert-kicker">CERTIFICATE</div>
+                  <h3>Gold Standard</h3>
+                </div>
+                <div class="cert-badge">VERIFIED</div>
               </div>
-              <div className="rounded-full bg-amber-300/60 px-5 py-3 text-sm font-bold">VERIFIED</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-black">Western Kenya Clean Cooking Project</div>
-              <div className="mt-6 text-5xl font-black">120,000 tCO₂e</div>
-              <div className="mt-2 text-sm font-semibold text-black/55">Carbon Credits Issued</div>
-            </div>
-            <div className="mt-10 grid grid-cols-3 gap-4 text-center text-sm">
-              <div><div className="font-bold">Issuance Date</div><div>20 Jan 2026</div></div>
-              <div><div className="font-bold">Standard</div><div>Gold Standard</div></div>
-              <div><div className="font-bold">Project ID</div><div>GS 13244</div></div>
-            </div>
-            <div className="mt-10 flex items-end justify-between">
-              <div>
-                <div className="font-serif text-3xl italic">Verified</div>
-                <div className="mt-2 text-xs text-black/50">Independent verification complete</div>
-              </div>
-              <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-amber-500 text-center text-xs font-black text-amber-700">VERIFIED<br />CREDIT</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
-      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
-        <CardContent className="p-6">
-          <h3 className="text-xl font-bold">Certificate Actions</h3>
-          <p className="mt-2 text-sm leading-6 text-white/60">A buyer can view the certificate, verify the linked report, or download a clean PDF for audit records.</p>
-          <div className="mt-6 space-y-3">
-            <Button className="w-full rounded-2xl bg-green-500 text-black hover:bg-green-400"><Eye className="mr-2 h-4 w-4" /> View public certificate</Button>
-            <Button variant="outline" className="w-full rounded-2xl border-white/15 bg-white/5 text-white hover:bg-white/10"><ExternalLink className="mr-2 h-4 w-4" /> Open registry reference</Button>
-            <Button variant="outline" className="w-full rounded-2xl border-white/15 bg-white/5 text-white hover:bg-white/10"><Download className="mr-2 h-4 w-4" /> Download PDF</Button>
+              <div class="cert-project">Western Kenya Clean Cooking Project</div>
+              <div class="cert-tonnes">120,000 tCO₂e</div>
+              <div class="cert-sub">Carbon Credits Issued</div>
+
+              <div class="cert-grid">
+                <div><b>Issuance Date</b><br>20 Jan 2026</div>
+                <div><b>Standard</b><br>Gold Standard</div>
+                <div><b>Project ID</b><br>GS 13244</div>
+              </div>
+
+              <div class="cert-sign">
+                <div>
+                  <div class="signature">Verified</div>
+                  <div style="font-size:12px; color:rgba(0,0,0,.5);">Independent verification complete</div>
+                </div>
+                <div class="seal">VERIFIED<br>CREDIT</div>
+              </div>
+            </div>
           </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
+
+          <div class="card">
+            <h2 class="section-title">Certificate actions</h2>
+            <p class="small">
+              A buyer can view the certificate, verify the linked report, open the registry reference,
+              or download a clean PDF for audit records.
+            </p>
+
+            <button class="btn" style="width:100%; margin-bottom:12px;">View public certificate</button>
+            <button class="btn secondary" style="width:100%; margin-bottom:12px;">Open registry reference</button>
+            <button class="btn secondary" style="width:100%;">Download PDF</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const steps = [
+      {
+        icon: "📊",
+        title: "Monitoring Completed",
+        date: "15 Oct 2025",
+        actor: "Verst Carbon Field Team",
+        body: "Household usage data, stove distribution records, GPS checks, and field activity logs were collected across Kisumu and Homa Bay.",
+        proof: "Field dataset hash anchored",
+        hash: "sha256:9c1f34a8e21d19f0c44b52d4ab7e8a42"
+      },
+      {
+        icon: "📄",
+        title: "Report Submitted",
+        date: "10 Nov 2025",
+        actor: "Verst Carbon MRV Team",
+        body: "Monitoring data was compiled into a structured MRV report using the approved methodology for improved cookstoves.",
+        proof: "MRV report fingerprint created",
+        hash: "sha256:a7f3e9cdb5a1e82f944b7e9b2f4d9c3"
+      },
+      {
+        icon: "✅",
+        title: "Verified by Gold Standard",
+        date: "05 Dec 2025",
+        actor: "Independent Verifier",
+        body: "The submitted report and supporting data were reviewed, checked, and approved against the relevant carbon standard.",
+        proof: "Verification event recorded",
+        hash: "sha256:f182c22d6cb9d10043b8e89e6bb0"
+      },
+      {
+        icon: "🏅",
+        title: "Credits Issued",
+        date: "20 Jan 2026",
+        actor: "Gold Standard Registry",
+        body: "120,000 tCO₂e carbon credits were issued for the 2025 vintage and linked back to the verified project record.",
+        proof: "Certificate and registry reference linked",
+        hash: "sha256:51ac18f70cb992e4c9102e102e"
+      }
+    ];
+
+    function show(id, btn) {
+      ["overview", "timeline", "report", "certificate"].forEach(section => {
+        document.getElementById(section).classList.add("hidden");
+      });
+
+      document.getElementById(id).classList.remove("hidden");
+
+      document.querySelectorAll("nav button").forEach(button => {
+        button.classList.remove("active");
+      });
+
+      if (btn) {
+        btn.classList.add("active");
+      } else {
+        document.querySelectorAll("nav button").forEach(button => {
+          const text = button.textContent.toLowerCase();
+          if (
+            (id === "overview" && text.includes("overview")) ||
+            (id === "timeline" && text.includes("timeline")) ||
+            (id === "report" && text.includes("report")) ||
+            (id === "certificate" && text.includes("certificate"))
+          ) {
+            button.classList.add("active");
+          }
+        });
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function buildTimeline() {
+      const container = document.getElementById("timelineSteps");
+
+      container.innerHTML = steps.map((step, index) => `
+        <div class="step" onclick="setStep(${index})">
+          <div class="step-icon">${step.icon}</div>
+          <b>${step.title}</b>
+          <div class="green">${step.date}</div>
+          <div class="small">${step.actor}</div>
+        </div>
+      `).join("");
+
+      setStep(0);
+    }
+
+    function setStep(index) {
+      document.querySelectorAll("#timelineSteps .step").forEach((el, i) => {
+        el.classList.toggle("active", i === index);
+      });
+
+      const step = steps[index];
+
+      document.getElementById("stepDetail").innerHTML = `
+        <div style="font-size:48px; margin-bottom:12px;">${step.icon}</div>
+        <h2 style="color:white; font-size:32px; margin:0 0 10px; text-transform:none; letter-spacing:-.5px;">${step.title}</h2>
+        <div class="green" style="font-weight:900; margin-bottom:4px;">${step.date}</div>
+        <div class="small">Handled by: ${step.actor}</div>
+
+        <p style="color:rgba(255,255,255,.76); line-height:1.75; margin:24px 0;">
+          ${step.body}
+        </p>
+
+        <div class="row">
+          <span>Proof created</span>
+          <b class="green">✓ ${step.proof}</b>
+        </div>
+
+        <div class="row">
+          <span>Hash</span>
+          <b class="hash">${step.hash}</b>
+        </div>
+      `;
+    }
+
+    buildTimeline();
+  </script>
+</body>
+</html>
