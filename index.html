@@ -1,0 +1,432 @@
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  CheckCircle2,
+  Leaf,
+  ShieldCheck,
+  FileText,
+  BarChart3,
+  Award,
+  Clock3,
+  MapPin,
+  Users,
+  Flame,
+  QrCode,
+  ExternalLink,
+  Copy,
+  ChevronRight,
+  Download,
+  Eye,
+  Home,
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+const steps = [
+  {
+    key: "monitoring",
+    label: "Monitoring",
+    title: "Monitoring Completed",
+    date: "15 Oct 2025",
+    actor: "Verst Carbon Field Team",
+    summary:
+      "Household usage data, stove distribution records, and field activity logs were collected across Kisumu and Homa Bay.",
+    proof: "Field dataset hash anchored",
+    hash: "sha256:9c1f...8a42",
+    icon: BarChart3,
+  },
+  {
+    key: "reporting",
+    label: "Reporting",
+    title: "Report Submitted",
+    date: "10 Nov 2025",
+    actor: "Verst Carbon MRV Team",
+    summary:
+      "Monitoring data was compiled into a structured carbon report using the approved methodology for improved cookstoves.",
+    proof: "MRV report fingerprint created",
+    hash: "sha256:a7f3...d9c3",
+    icon: FileText,
+  },
+  {
+    key: "verification",
+    label: "Verification",
+    title: "Verified by Gold Standard",
+    date: "05 Dec 2025",
+    actor: "Independent Verifier",
+    summary:
+      "The submitted report and supporting data were reviewed, checked, and approved against the relevant carbon standard.",
+    proof: "Verification event recorded",
+    hash: "sha256:f182...6bb0",
+    icon: ShieldCheck,
+  },
+  {
+    key: "issuance",
+    label: "Issuance",
+    title: "Credits Issued",
+    date: "20 Jan 2026",
+    actor: "Gold Standard Registry",
+    summary:
+      "120,000 tCO₂e carbon credits were issued for the 2025 vintage and linked back to the verified project record.",
+    proof: "Certificate + registry reference linked",
+    hash: "sha256:51ac...102e",
+    icon: Award,
+  },
+];
+
+const views = [
+  { key: "overview", label: "Project Overview", icon: Home },
+  { key: "timeline", label: "MRV Timeline", icon: Clock3 },
+  { key: "report", label: "Report Integrity", icon: FileText },
+  { key: "certificate", label: "Certificate", icon: Award },
+];
+
+export default function VerstClickableWorkflowDemo() {
+  const [view, setView] = useState("overview");
+  const [activeStep, setActiveStep] = useState(steps[0]);
+
+  return (
+    <div className="min-h-screen bg-[#07101d] text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,212,107,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(212,175,55,0.08),transparent_30%)]" />
+      <div className="relative grid min-h-screen grid-cols-1 lg:grid-cols-[280px_1fr]">
+        <aside className="border-r border-white/10 bg-black/20 p-5 backdrop-blur-xl">
+          <div className="mb-8 flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-green-400/20">
+              <Leaf className="h-7 w-7 text-green-400" />
+            </div>
+            <div>
+              <div className="text-xl font-bold tracking-wide">VERST</div>
+              <div className="text-xs tracking-[0.3em] text-white/70">CARBON</div>
+            </div>
+          </div>
+
+          <nav className="space-y-2">
+            {views.map((item) => {
+              const Icon = item.icon;
+              const active = view === item.key;
+              return (
+                <button
+                  key={item.key}
+                  onClick={() => setView(item.key)}
+                  className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition ${
+                    active
+                      ? "bg-green-400/18 text-green-300 shadow-lg shadow-green-500/10"
+                      : "text-white/70 hover:bg-white/5 hover:text-white"
+                  }`}
+                >
+                  <Icon className="h-5 w-5" />
+                  <span className="text-sm font-medium">{item.label}</span>
+                </button>
+              );
+            })}
+          </nav>
+
+          <Card className="mt-10 rounded-3xl border-green-400/20 bg-green-400/10 text-white">
+            <CardContent className="p-5">
+              <p className="text-lg font-semibold leading-tight">Verifiable.<br />Transparent.<br />Trusted Impact.</p>
+              <div className="mt-6 flex items-center gap-2 text-xs text-white/60">
+                <CheckCircle2 className="h-4 w-4 text-green-400" /> Powered by JSON + proof layer
+              </div>
+            </CardContent>
+          </Card>
+        </aside>
+
+        <main className="p-5 md:p-8">
+          <header className="mb-6 grid gap-5 lg:grid-cols-[1fr_320px]">
+            <div>
+              <div className="mb-2 text-sm font-semibold uppercase tracking-wider text-green-400">Project</div>
+              <h1 className="text-3xl font-bold md:text-5xl">Western Kenya Clean Cooking Project</h1>
+              <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/75">
+                <span className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2"><MapPin className="h-4 w-4" /> Kisumu & Homa Bay, Kenya</span>
+                <span className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2"><Flame className="h-4 w-4" /> Improved Cookstoves</span>
+                <span className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2"><Leaf className="h-4 w-4" /> Vintage 2025</span>
+              </div>
+            </div>
+            <Card className="rounded-3xl border-green-400/25 bg-green-500/15 text-white shadow-2xl shadow-green-600/10">
+              <CardContent className="flex items-center gap-4 p-5">
+                <CheckCircle2 className="h-16 w-16 text-green-300" />
+                <div>
+                  <div className="text-2xl font-black">VERIFIED</div>
+                  <div className="text-sm text-green-100/80">Verified by Gold Standard</div>
+                </div>
+              </CardContent>
+            </Card>
+          </header>
+
+          <motion.div
+            key={view}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            {view === "overview" && <Overview setView={setView} setActiveStep={setActiveStep} />}
+            {view === "timeline" && <Timeline activeStep={activeStep} setActiveStep={setActiveStep} />}
+            {view === "report" && <ReportIntegrity />}
+            {view === "certificate" && <Certificate />}
+          </motion.div>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+function MetricCard({ icon: Icon, label, value, sub }) {
+  return (
+    <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+      <CardContent className="flex gap-4 p-5">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-green-400/15">
+          <Icon className="h-7 w-7 text-green-300" />
+        </div>
+        <div>
+          <div className="text-sm text-white/65">{label}</div>
+          <div className="mt-1 text-2xl font-bold">{value}</div>
+          <div className="mt-1 text-xs text-white/55">{sub}</div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function Overview({ setView, setActiveStep }) {
+  return (
+    <div className="space-y-5">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <MetricCard icon={Leaf} label="Total Credits Issued" value="120,000" sub="tCO₂e" />
+        <MetricCard icon={Award} label="Verification Standard" value="Gold Standard" sub="GS 13244" />
+        <MetricCard icon={ShieldCheck} label="Status" value="Verified & Issued" sub="Credits are live and tradable" />
+        <MetricCard icon={Clock3} label="Last Verified" value="20 Jan 2026" sub="Next verification: Jan 2027" />
+      </div>
+
+      <div className="grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
+        <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+          <CardContent className="p-6">
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="font-semibold uppercase tracking-wide text-green-400">Project Timeline</h2>
+              <Button onClick={() => setView("timeline")} className="rounded-2xl bg-green-500 text-black hover:bg-green-400">Open workflow <ChevronRight className="ml-1 h-4 w-4" /></Button>
+            </div>
+            <div className="grid gap-4 md:grid-cols-4">
+              {steps.map((step) => {
+                const Icon = step.icon;
+                return (
+                  <button
+                    key={step.key}
+                    onClick={() => {
+                      setActiveStep(step);
+                      setView("timeline");
+                    }}
+                    className="rounded-3xl border border-white/10 bg-black/20 p-4 text-left transition hover:border-green-400/50 hover:bg-green-400/10"
+                  >
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-green-400/15">
+                      <Icon className="h-6 w-6 text-green-300" />
+                    </div>
+                    <div className="font-bold">{step.title}</div>
+                    <div className="mt-2 text-sm text-green-300">{step.date}</div>
+                    <div className="mt-1 text-xs text-white/55">{step.actor}</div>
+                  </button>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+          <CardContent className="p-6">
+            <h2 className="mb-4 font-semibold uppercase tracking-wide text-green-400">Project Story</h2>
+            <p className="text-sm leading-7 text-white/70">
+              This project distributes and promotes improved cookstoves to households in Kisumu and Homa Bay, reducing reliance on traditional biomass and improving health, environment and livelihoods.
+            </p>
+            <div className="mt-7 grid grid-cols-3 gap-3 text-center">
+              <ImpactStat icon={Users} value="58,600" label="Households" />
+              <ImpactStat icon={Leaf} value="120,000" label="tCO₂e" />
+              <ImpactStat icon={MapPin} value="2" label="Counties" />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-5 xl:grid-cols-2">
+        <ClickablePanel title="Report Integrity" button="Verify report" onClick={() => setView("report")}>
+          Original MRV report fingerprinted with SHA-256 and linked to a buyer-facing verification page.
+        </ClickablePanel>
+        <ClickablePanel title="Certificate View" button="View certificate" onClick={() => setView("certificate")}>
+          Issued credits shown through a clean certificate layer connected to the registry reference and audit trail.
+        </ClickablePanel>
+      </div>
+    </div>
+  );
+}
+
+function ImpactStat({ icon: Icon, value, label }) {
+  return (
+    <div className="rounded-2xl bg-black/20 p-4">
+      <Icon className="mx-auto mb-2 h-5 w-5 text-green-300" />
+      <div className="text-xl font-bold text-green-300">{value}</div>
+      <div className="text-xs text-white/55">{label}</div>
+    </div>
+  );
+}
+
+function ClickablePanel({ title, button, onClick, children }) {
+  return (
+    <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+      <CardContent className="flex items-center justify-between gap-4 p-6">
+        <div>
+          <h3 className="text-xl font-bold">{title}</h3>
+          <p className="mt-2 max-w-xl text-sm leading-6 text-white/65">{children}</p>
+        </div>
+        <Button onClick={onClick} variant="outline" className="rounded-2xl border-green-400/30 bg-green-400/10 text-green-200 hover:bg-green-400/20">
+          {button} <ChevronRight className="ml-1 h-4 w-4" />
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
+function Timeline({ activeStep, setActiveStep }) {
+  const Icon = activeStep.icon;
+  return (
+    <div className="grid gap-5 xl:grid-cols-[1fr_420px]">
+      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+        <CardContent className="p-6">
+          <h2 className="mb-2 text-2xl font-bold">MRV Workflow</h2>
+          <p className="mb-8 text-sm text-white/60">Click each stage to show what was checked, who handled it, and what proof was created.</p>
+          <div className="relative grid gap-4 md:grid-cols-4">
+            <div className="absolute left-8 right-8 top-8 hidden h-[2px] bg-green-400/30 md:block" />
+            {steps.map((step) => {
+              const StepIcon = step.icon;
+              const active = activeStep.key === step.key;
+              return (
+                <button key={step.key} onClick={() => setActiveStep(step)} className="relative text-left">
+                  <div className={`mb-4 flex h-16 w-16 items-center justify-center rounded-3xl border transition ${active ? "border-green-300 bg-green-400/25" : "border-white/10 bg-black/30"}`}>
+                    <StepIcon className={`h-7 w-7 ${active ? "text-green-200" : "text-white/65"}`} />
+                  </div>
+                  <div className="font-bold">{step.label}</div>
+                  <div className="mt-1 text-sm text-green-300">{step.date}</div>
+                </button>
+              );
+            })}
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-3xl border-green-400/20 bg-green-400/10 text-white">
+        <CardContent className="p-6">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-3xl bg-green-400/20">
+            <Icon className="h-8 w-8 text-green-200" />
+          </div>
+          <h3 className="text-2xl font-black">{activeStep.title}</h3>
+          <div className="mt-2 text-green-200">{activeStep.date}</div>
+          <div className="mt-1 text-sm text-white/55">Handled by: {activeStep.actor}</div>
+          <p className="mt-6 leading-7 text-white/75">{activeStep.summary}</p>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-black/25 p-4">
+            <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-green-300"><CheckCircle2 className="h-4 w-4" /> {activeStep.proof}</div>
+            <div className="flex items-center justify-between rounded-xl bg-black/35 px-3 py-2 font-mono text-xs text-white/60">
+              {activeStep.hash}
+              <Copy className="h-4 w-4" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+function ReportIntegrity() {
+  return (
+    <div className="grid gap-5 xl:grid-cols-[1fr_420px]">
+      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+        <CardContent className="p-6">
+          <h2 className="text-2xl font-bold">Report Integrity</h2>
+          <p className="mt-2 text-sm text-white/60">Buyer or auditor checks whether the report is original and unchanged.</p>
+          <div className="mt-6 space-y-4">
+            <InfoRow label="Report ID" value="VERST-WKCCP-R-2025-001" />
+            <InfoRow label="Document Hash" value="a7f3e9cdb5a1...7e9b2f4d9c3" mono />
+            <InfoRow label="Method" value="SHA-256 document fingerprint" />
+            <InfoRow label="Status" value="Original document verified" success />
+          </div>
+          <div className="mt-7 rounded-3xl border border-green-400/20 bg-green-400/10 p-5">
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="mt-1 h-6 w-6 text-green-300" />
+              <div>
+                <div className="font-bold text-green-200">Verification passed</div>
+                <p className="mt-2 text-sm leading-6 text-white/70">
+                  The report fingerprint matches the anchored record. This means the document being viewed is the same report that was submitted and verified.
+                </p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+        <CardContent className="p-6 text-center">
+          <h3 className="mb-4 text-xl font-bold">Scan to verify</h3>
+          <div className="mx-auto flex h-56 w-56 items-center justify-center rounded-3xl bg-white p-4 text-black">
+            <QrCode className="h-44 w-44" />
+          </div>
+          <p className="mx-auto mt-5 max-w-xs text-sm text-white/60">QR opens a public verification page with the project timeline, report fingerprint and certificate reference.</p>
+          <Button className="mt-6 rounded-2xl bg-green-500 text-black hover:bg-green-400"><Eye className="mr-2 h-4 w-4" /> Open verification page</Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+function InfoRow({ label, value, mono, success }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+      <div className="text-xs uppercase tracking-wider text-white/45">{label}</div>
+      <div className={`mt-2 flex items-center gap-2 text-lg ${mono ? "font-mono text-sm" : "font-semibold"} ${success ? "text-green-300" : "text-white"}`}>
+        {success && <CheckCircle2 className="h-5 w-5" />} {value}
+      </div>
+    </div>
+  );
+}
+
+function Certificate() {
+  return (
+    <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
+      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+        <CardContent className="p-6">
+          <div className="rounded-3xl border border-amber-300/40 bg-[#f8f2df] p-8 text-[#16202b] shadow-2xl">
+            <div className="mb-8 flex items-center justify-between border-b border-black/10 pb-5">
+              <div>
+                <div className="text-sm uppercase tracking-[0.35em] text-black/50">Certificate</div>
+                <div className="mt-2 text-3xl font-black">Gold Standard</div>
+              </div>
+              <div className="rounded-full bg-amber-300/60 px-5 py-3 text-sm font-bold">VERIFIED</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-black">Western Kenya Clean Cooking Project</div>
+              <div className="mt-6 text-5xl font-black">120,000 tCO₂e</div>
+              <div className="mt-2 text-sm font-semibold text-black/55">Carbon Credits Issued</div>
+            </div>
+            <div className="mt-10 grid grid-cols-3 gap-4 text-center text-sm">
+              <div><div className="font-bold">Issuance Date</div><div>20 Jan 2026</div></div>
+              <div><div className="font-bold">Standard</div><div>Gold Standard</div></div>
+              <div><div className="font-bold">Project ID</div><div>GS 13244</div></div>
+            </div>
+            <div className="mt-10 flex items-end justify-between">
+              <div>
+                <div className="font-serif text-3xl italic">Verified</div>
+                <div className="mt-2 text-xs text-black/50">Independent verification complete</div>
+              </div>
+              <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-amber-500 text-center text-xs font-black text-amber-700">VERIFIED<br />CREDIT</div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-3xl border-white/10 bg-white/[0.045] text-white">
+        <CardContent className="p-6">
+          <h3 className="text-xl font-bold">Certificate Actions</h3>
+          <p className="mt-2 text-sm leading-6 text-white/60">A buyer can view the certificate, verify the linked report, or download a clean PDF for audit records.</p>
+          <div className="mt-6 space-y-3">
+            <Button className="w-full rounded-2xl bg-green-500 text-black hover:bg-green-400"><Eye className="mr-2 h-4 w-4" /> View public certificate</Button>
+            <Button variant="outline" className="w-full rounded-2xl border-white/15 bg-white/5 text-white hover:bg-white/10"><ExternalLink className="mr-2 h-4 w-4" /> Open registry reference</Button>
+            <Button variant="outline" className="w-full rounded-2xl border-white/15 bg-white/5 text-white hover:bg-white/10"><Download className="mr-2 h-4 w-4" /> Download PDF</Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
