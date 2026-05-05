@@ -4,99 +4,35 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Carbon Portfolio Verification Dashboard</title>
-
 <style>
 *{box-sizing:border-box}
-:root{
---bg:#06101d;
---panel:rgba(255,255,255,.055);
---line:rgba(255,255,255,.12);
---muted:rgba(255,255,255,.62);
---green:#4ade80;
---gold:#f3c969;
-}
+:root{--bg:#06101d;--panel:rgba(255,255,255,.055);--line:rgba(255,255,255,.12);--muted:rgba(255,255,255,.62);--green:#4ade80;--gold:#f3c969}
 body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#fff}
 .app{min-height:100vh;display:grid;grid-template-columns:300px 1fr;background:radial-gradient(circle at 80% 4%,rgba(74,222,128,.18),transparent 34%),radial-gradient(circle at 10% 90%,rgba(243,201,105,.10),transparent 30%),linear-gradient(135deg,#050b14 0%,#081525 55%,#06101d 100%)}
 aside{border-right:1px solid var(--line);padding:26px 22px;background:rgba(0,0,0,.30)}
-.logo{display:flex;gap:14px;align-items:center;margin-bottom:28px}
-.logo-mark{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,#4ade80,#16a34a);display:grid;place-items:center;color:#031009;font-weight:1000;font-size:31px}
-.logo-title{font-size:23px;font-weight:950}
-.logo-sub{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.64)}
+.logo{display:flex;gap:14px;align-items:center;margin-bottom:28px}.logo-mark{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,#4ade80,#16a34a);display:grid;place-items:center;color:#031009;font-weight:1000;font-size:31px}.logo-title{font-size:23px;font-weight:950}.logo-sub{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.64)}
 nav button{width:100%;border:0;border-radius:18px;background:transparent;color:rgba(255,255,255,.66);padding:14px 16px;margin:5px 0;text-align:left;cursor:pointer;font-weight:850}
 nav button:hover,nav button.active{background:rgba(74,222,128,.16);color:#86efac;box-shadow:inset 3px 0 0 var(--green)}
-.account{margin-top:26px;border:1px solid rgba(74,222,128,.24);background:rgba(74,222,128,.10);border-radius:26px;padding:20px}
-.account h3{margin:0 0 12px}
-.account-row{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08);padding:10px 0;font-size:13px}
-.account-row span{color:var(--muted)}
-main{padding:30px}
-.top{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-bottom:20px}
-.kicker{color:var(--green);font-weight:1000;text-transform:uppercase;letter-spacing:1.8px;font-size:12px}
-h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:8px 0 12px}
-.muted{color:var(--muted)}
-.soft{color:rgba(255,255,255,.78)}
-.green{color:var(--green)}
-.pills{display:flex;gap:10px;flex-wrap:wrap}
-.pill{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.06);color:rgba(255,255,255,.75);padding:10px 14px;border-radius:999px;font-size:13px;font-weight:800}
-.verified-card{border:1px solid rgba(74,222,128,.28);background:linear-gradient(135deg,rgba(34,197,94,.23),rgba(9,20,34,.7));border-radius:28px;padding:22px;display:flex;align-items:center;gap:16px}
-.big-check{width:70px;height:70px;border-radius:50%;background:var(--green);color:#041007;display:grid;place-items:center;font-size:42px;font-weight:1000}
-.verified-card b{font-size:26px}
-.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}
-.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-bottom:18px}
+.account{margin-top:26px;border:1px solid rgba(74,222,128,.24);background:rgba(74,222,128,.10);border-radius:26px;padding:20px}.account h3{margin:0 0 12px}.account-row{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08);padding:10px 0;font-size:13px}.account-row span{color:var(--muted)}
+main{padding:30px}.top{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-bottom:20px}.kicker{color:var(--green);font-weight:1000;text-transform:uppercase;letter-spacing:1.8px;font-size:12px}h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:8px 0 12px}
+.muted{color:var(--muted)}.soft{color:rgba(255,255,255,.78);line-height:1.7}.green{color:var(--green)}
+.pills{display:flex;gap:10px;flex-wrap:wrap}.pill{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.06);color:rgba(255,255,255,.75);padding:10px 14px;border-radius:999px;font-size:13px;font-weight:800}
+.verified-card{border:1px solid rgba(74,222,128,.28);background:linear-gradient(135deg,rgba(34,197,94,.23),rgba(9,20,34,.7));border-radius:28px;padding:22px;display:flex;align-items:center;gap:16px}.big-check{width:70px;height:70px;border-radius:50%;background:var(--green);color:#041007;display:grid;place-items:center;font-size:42px;font-weight:1000}.verified-card b{font-size:26px}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-bottom:18px}
 .card{border:1px solid var(--line);background:var(--panel);border-radius:28px;padding:23px;box-shadow:0 18px 50px rgba(0,0,0,.18)}
-.metric-icon{width:54px;height:54px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}
-.metric-label{color:rgba(255,255,255,.58);font-size:13px;font-weight:800}
-.metric-value{font-size:27px;font-weight:1000;margin:6px 0}
-.small{font-size:13px;color:rgba(255,255,255,.55);line-height:1.55}
+.metric-icon{width:54px;height:54px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}.metric-label{color:rgba(255,255,255,.58);font-size:13px;font-weight:800}.metric-value{font-size:27px;font-weight:1000;margin:6px 0}.small{font-size:13px;color:rgba(255,255,255,.55);line-height:1.55}
 .section-title{color:var(--green);text-transform:uppercase;letter-spacing:1.4px;font-size:13px;font-weight:1000;margin:0 0 16px}
-.project-list{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.project-btn{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.20);border-radius:22px;padding:16px;cursor:pointer;color:white;text-align:left;min-height:145px}
-.project-btn:hover,.project-btn.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}
-.project-icon{font-size:28px}
-.project-btn b{display:block;margin:8px 0}
-.project-card{overflow:hidden;padding:0;cursor:pointer;transition:.2s}
-.project-card:hover{transform:translateY(-4px);border-color:rgba(74,222,128,.45)}
-.project-card-img{height:220px;background-size:cover;background-position:center;position:relative}
-.project-card-img:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.75))}
-.project-card-body{padding:22px}
-.project-card-title{font-size:22px;font-weight:1000;margin:0 0 8px}
-.impact-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
-.impact-box{background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:13px;text-align:center}
-.impact-box b{display:block;color:var(--green);font-size:20px}
-.hero-img{min-height:390px;border-radius:24px;overflow:hidden;background-size:cover;background-position:center;display:flex;align-items:end;padding:22px;border:1px solid rgba(255,255,255,.12);position:relative}
-.hero-img:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72))}
-.hero-img div{position:relative;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:16px}
-.timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.step{border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.20);border-radius:24px;padding:18px;cursor:pointer;min-height:168px}
-.step:hover,.step.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}
-.step-icon{width:52px;height:52px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}
-.step b{display:block;font-size:16px;margin-bottom:9px}
-.row{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);border-radius:18px;padding:15px;margin:11px 0}
-.row span{display:block;color:rgba(255,255,255,.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:900}
-.row b{font-size:17px}
-.hash{font-family:monospace;font-size:14px!important;word-break:break-all}
-.btn{border:0;border-radius:16px;background:var(--green);color:#041007;padding:13px 16px;font-weight:1000;cursor:pointer}
-.btn.secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:white}
-.table{width:100%;border-collapse:collapse}
-.table th{text-align:left;color:rgba(255,255,255,.48);font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:12px}
-.table td{padding:14px 12px;border-top:1px solid rgba(255,255,255,.08);font-size:14px}
-.status{display:inline-block;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:950}
-.status.verified{background:rgba(74,222,128,.16);color:#86efac}
-.status.retired{background:rgba(243,201,105,.16);color:#f3c969}
+.project-list{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.project-btn{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.20);border-radius:22px;padding:16px;cursor:pointer;color:white;text-align:left;min-height:145px}.project-btn:hover,.project-btn.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}.project-icon{font-size:28px}.project-btn b{display:block;margin:8px 0}
+.project-card{overflow:hidden;padding:0;cursor:pointer;transition:.2s}.project-card:hover,.project-card.active{transform:translateY(-4px);border-color:rgba(74,222,128,.55)}.project-card-img{height:220px;background-size:cover;background-position:center;position:relative}.project-card-img:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.78))}.project-card-body{padding:22px}.project-card-title{font-size:22px;font-weight:1000;margin:0 0 8px}
+.impact-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.impact-box{background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:13px;text-align:center}.impact-box b{display:block;color:var(--green);font-size:20px}
+.hero-img{min-height:390px;border-radius:24px;overflow:hidden;background-size:cover;background-position:center;display:flex;align-items:end;padding:22px;border:1px solid rgba(255,255,255,.12);position:relative}.hero-img:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72))}.hero-img div{position:relative;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:16px}
+.timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.20);border-radius:24px;padding:18px;cursor:pointer;min-height:168px}.step:hover,.step.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}.step-icon{width:52px;height:52px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}.step b{display:block;font-size:16px;margin-bottom:9px}
+.row{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);border-radius:18px;padding:15px;margin:11px 0}.row span{display:block;color:rgba(255,255,255,.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:900}.row b{font-size:17px}.hash{font-family:monospace;font-size:14px!important;word-break:break-all}
+.btn{border:0;border-radius:16px;background:var(--green);color:#041007;padding:13px 16px;font-weight:1000;cursor:pointer}.btn.secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:white}
+.table{width:100%;border-collapse:collapse}.table th{text-align:left;color:rgba(255,255,255,.48);font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:12px}.table td{padding:14px 12px;border-top:1px solid rgba(255,255,255,.08);font-size:14px}.status{display:inline-block;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:950}.status.verified{background:rgba(74,222,128,.16);color:#86efac}.status.retired{background:rgba(243,201,105,.16);color:#f3c969}
 .qr{width:230px;height:230px;border-radius:26px;margin:10px auto 20px;background:linear-gradient(90deg,#111 10px,transparent 10px) 0 0/28px 28px,linear-gradient(#111 10px,transparent 10px) 0 0/28px 28px,white;border:14px solid white}
-.certificate-paper{background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(248,242,223,.96));color:#15202b;border-radius:26px;padding:40px;border:1px solid rgba(243,201,105,.65)}
-.cert-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:18px;margin-bottom:28px}
-.cert-head h3{margin:5px 0 0;font-size:32px}
-.cert-kicker{font-size:12px;letter-spacing:5px;color:rgba(0,0,0,.52);font-weight:900}
-.cert-badge{background:rgba(243,201,105,.55);border-radius:999px;padding:12px 18px;font-weight:1000}
-.cert-project{text-align:center;font-size:26px;font-weight:1000;margin-bottom:22px}
-.cert-tonnes{text-align:center;font-size:54px;font-weight:1000}
-.cert-sub{text-align:center;color:rgba(0,0,0,.58);font-weight:800}
-.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;text-align:center;margin-top:34px}
-.seal{width:105px;height:105px;border-radius:50%;border:5px solid #b45309;color:#92400e;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:1000;transform:rotate(-8deg)}
-.hidden{display:none}
-.caption{color:var(--green);text-align:right;font-weight:900;margin:12px 0 0}
+.certificate-paper{background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(248,242,223,.96));color:#15202b;border-radius:26px;padding:40px;border:1px solid rgba(243,201,105,.65)}.cert-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:18px;margin-bottom:28px}.cert-head h3{margin:5px 0 0;font-size:32px}.cert-kicker{font-size:12px;letter-spacing:5px;color:rgba(0,0,0,.52);font-weight:900}.cert-badge{background:rgba(243,201,105,.55);border-radius:999px;padding:12px 18px;font-weight:1000}.cert-project{text-align:center;font-size:26px;font-weight:1000;margin-bottom:22px}.cert-tonnes{text-align:center;font-size:54px;font-weight:1000}.cert-sub{text-align:center;color:rgba(0,0,0,.58);font-weight:800}.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;text-align:center;margin-top:34px}.seal{width:105px;height:105px;border-radius:50%;border:5px solid #b45309;color:#92400e;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:1000;transform:rotate(-8deg)}
+.hidden{display:none}.caption{color:var(--green);text-align:right;font-weight:900;margin:12px 0 0}
 @media(max-width:1100px){.app{grid-template-columns:1fr}.top,.grid2{grid-template-columns:1fr}.grid5,.grid4,.grid3,.project-list,.timeline-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){main,aside{padding:18px}.grid5,.grid4,.grid3,.project-list,.timeline-grid,.cert-grid,.impact-row{grid-template-columns:1fr}.cert-tonnes{font-size:40px}}
 </style>
@@ -106,7 +42,6 @@ h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:8px 0 12px}
 <div class="app">
 <aside>
 <div class="logo"><div class="logo-mark">V</div><div><div class="logo-title">VERST</div><div class="logo-sub">CARBON</div></div></div>
-
 <nav>
 <button class="active" onclick="show('portfolio', this)">🏠 Portfolio</button>
 <button onclick="show('projects', this)">🌍 Projects</button>
@@ -114,7 +49,6 @@ h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:8px 0 12px}
 <button onclick="show('report', this)">📄 Report Integrity</button>
 <button onclick="show('certificates', this)">🏅 Certificates</button>
 </nav>
-
 <div class="account">
 <h3>Account Owner</h3>
 <div class="account-row"><span>Client</span><b>GreenLeaf Foods Ltd</b></div>
@@ -143,9 +77,7 @@ h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:8px 0 12px}
 <div class="card"><div class="metric-icon">🏅</div><div class="metric-label">Certificates</div><div class="metric-value">9</div><div class="small">verified certificates</div></div>
 <div class="card"><div class="metric-icon">🛡️</div><div class="metric-label">Audit Status</div><div class="metric-value">Clean</div><div class="small">all proofs matched</div></div>
 </div>
-
 <div class="card"><h2 class="section-title">Select project</h2><div class="project-list" id="projectList"></div></div>
-
 <div class="grid2">
 <div class="card">
 <h2 class="section-title">Current selected asset</h2>
@@ -172,36 +104,28 @@ h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:8px 0 12px}
 <section id="projects" class="hidden">
 <div class="card" style="margin-bottom:18px">
 <h2 class="section-title">All portfolio projects</h2>
-<p class="soft" style="line-height:1.7;margin-top:-6px">
-Each asset has its own story, impact profile, certificates and MRV proof trail. Click any project to open it.
-</p>
+<p class="soft">This page shows every verified asset in the client portfolio. Each project has its own story, impact metrics, certificate record and project-specific MRV workflow.</p>
 </div>
-
-<div class="grid3" id="allProjects"></div>
-
+<div class="grid3" id="projectGallery"></div>
 <div class="grid2">
 <div class="card">
 <h2 class="section-title" id="projectTitle"></h2>
 <div class="pills" style="margin-bottom:18px"><span class="pill" id="projectLocation"></span><span class="pill" id="projectType"></span><span class="pill" id="projectRegistry"></span></div>
-<p class="soft" id="projectStory" style="line-height:1.75"></p>
-
+<p class="soft" id="projectStory"></p>
 <div class="impact-row">
 <div class="impact-box"><b id="impactOne"></b><span class="small" id="impactOneLabel"></span></div>
 <div class="impact-box"><b id="impactTwo"></b><span class="small" id="impactTwoLabel"></span></div>
 <div class="impact-box"><b id="impactThree"></b><span class="small" id="impactThreeLabel"></span></div>
 </div>
-
 <div class="grid4" style="margin-top:20px">
 <div class="card"><div class="metric-label">Credits Issued</div><div class="metric-value" id="projCredits2"></div></div>
 <div class="card"><div class="metric-label">Vintage</div><div class="metric-value" id="projVintage"></div></div>
 <div class="card"><div class="metric-label">Standard</div><div class="metric-value" id="projStandard2"></div></div>
 <div class="card"><div class="metric-label">Last Verified</div><div class="metric-value" id="projVerified"></div></div>
 </div>
-
 <button class="btn" onclick="show('timeline')">View this project’s MRV →</button>
 <button class="btn secondary" onclick="show('report')" style="margin-left:8px">Verify report</button>
 </div>
-
 <div class="hero-img" id="projectImage"><div><b id="imageLabel"></b><p class="small">Buyer-friendly project context connected to verification records.</p></div></div>
 </div>
 </section>
@@ -247,136 +171,11 @@ Each asset has its own story, impact profile, certificates and MRV proof trail. 
 
 <script>
 const projects=[
-{
-icon:"🔥",
-name:"Western Kenya Clean Cooking",
-full:"Western Kenya Clean Cooking Project",
-location:"Kisumu & Homa Bay, Kenya",
-type:"Improved Cookstoves",
-credits:"120,000",
-standard:"Gold Standard",
-status:"Verified",
-registry:"GS-13244-2025",
-vintage:"2025",
-verified:"Jan 2026",
-report:"VERST-WKCCP-R-2025-001",
-hash:"sha256:a7f3e9cdb5a1e82f944b7e9b2f4d9c3",
-story:"Across western Kenya, many households still rely on traditional biomass for cooking. This project distributes improved cookstoves that reduce fuel use, lower household smoke exposure and create measurable emissions reductions. For a buyer, the value is not just the credit — it is the ability to see the proof behind the distribution, usage monitoring, calculations and issuance.",
-image:"https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1400&q=90",
-impact:[["58,600","Households reached"],["120,000","tCO₂e issued"],["2","Counties covered"]],
-mrv:[
-["🧾","Household Baseline","01 Aug 2025","Field Enumerators","Baseline household cooking methods, fuel usage and GPS records were collected before stove deployment.","Baseline dataset fingerprinted","sha256:ccook-base-91f0"],
-["🔥","Stove Distribution","18 Aug 2025","Distribution Partners","Improved cookstoves were issued with household IDs, serial records and signed delivery confirmations.","Distribution record anchored","sha256:ccook-dist-a82b"],
-["📱","Usage Monitoring","15 Oct 2025","Verst Carbon Field Team","Stove usage checks, sample surveys and fuel saving calculations were compiled for MRV reporting.","Usage monitoring hash created","sha256:ccook-use-44e2"],
-["📄","MRV Report Submitted","10 Nov 2025","Verst Carbon MRV Team","Monitoring data was compiled into the approved clean cooking methodology report.","Report fingerprint created","sha256:ccook-report-d9c3"],
-["✅","Independent Verification","05 Dec 2025","Third-party Verifier","Verifier reviewed usage evidence, sampling logic and emissions reduction calculations.","Verification event recorded","sha256:ccook-ver-6bb0"],
-["🏅","Credits Issued","20 Jan 2026","Gold Standard Registry","Credits were issued and linked to the verified project record.","Certificate linked","sha256:ccook-cert-102e"]
-]
-},
-{
-icon:"🌱",
-name:"Nakuru Soil Carbon",
-full:"Nakuru Soil Carbon Programme",
-location:"Nakuru County, Kenya",
-type:"Soil Carbon / Regenerative Agriculture",
-credits:"32,500",
-standard:"Verra VCS",
-status:"Verified",
-registry:"VCS-90421-2025",
-vintage:"2025",
-verified:"Dec 2025",
-report:"VERST-NSC-R-2025-002",
-hash:"sha256:b42a91e0ddc39072aa8e9d5f712c0a11",
-story:"This programme works with farmers adopting regenerative practices that improve soil health and increase soil organic carbon. The project story matters because buyers want to understand how farm practices translate into measurable climate outcomes. The dashboard shows the link between field practices, soil samples, lab results, modelling and verified credits.",
-image:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=90",
-impact:[["7,400","Farmers onboarded"],["32,500","tCO₂e issued"],["18,200","Hectares tracked"]],
-mrv:[
-["🧪","Baseline Soil Sampling","03 Apr 2025","Soil Lab Team","Initial soil samples were collected from participating farms to establish baseline organic carbon levels.","Baseline lab records anchored","sha256:soil-base-2f91"],
-["🚜","Farm Practice Tracking","May–Sep 2025","Agronomy Team","Regenerative practices were tracked, including cover crops, residue management and reduced tillage.","Practice log fingerprinted","sha256:soil-practice-882a"],
-["🔬","Lab Testing","22 Oct 2025","Independent Lab","Follow-up samples were tested and matched against field plots and farm IDs.","Lab result hash created","sha256:soil-lab-71da"],
-["📈","Carbon Modelling","04 Nov 2025","MRV Modelling Team","Soil carbon changes were modelled using approved methodology and sampling data.","Model output anchored","sha256:soil-model-aa0c"],
-["✅","Verification Review","12 Dec 2025","VCS Verifier","Verifier reviewed sampling, farm records, model assumptions and calculations.","Verification record created","sha256:soil-ver-0a11"],
-["🏅","Credits Issued","28 Dec 2025","Verra Registry","Verified soil carbon credits were issued and linked to the registry reference.","Certificate linked","sha256:soil-cert-9042"]
-]
-},
-{
-icon:"🌳",
-name:"Aberdare Forest Restoration",
-full:"Aberdare Forest Restoration Project",
-location:"Aberdare Range, Kenya",
-type:"Forest Restoration",
-credits:"18,000",
-standard:"Plan Vivo",
-status:"Retired",
-registry:"PV-ABR-7781-2024",
-vintage:"2024",
-verified:"Oct 2024",
-report:"VERST-AFR-R-2024-009",
-hash:"sha256:cc72b7a1d90e4452fc17a88bb703ae12",
-story:"The Aberdare ecosystem is one of Kenya’s most important water towers and biodiversity landscapes. This restoration project connects planting records, survival monitoring, GIS boundaries, remote sensing and community activity into a single buyer-friendly proof trail. Retired credits remain visible so the buyer can prove past climate claims.",
-image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=90",
-impact:[["410,000","Trees planted"],["18,000","tCO₂e retired"],["1,850","Hectares restored"]],
-mrv:[
-["🗺️","Baseline Mapping","15 Feb 2024","GIS Team","Restoration zones were mapped with boundaries, land status and baseline vegetation condition.","GIS boundary hash anchored","sha256:forest-map-7701"],
-["🌱","Tree Planting Records","Apr–Jun 2024","Community Restoration Teams","Seedlings planted, species mix, plot IDs and community records were logged.","Planting records fingerprinted","sha256:forest-plant-9b20"],
-["🌳","Survival Monitoring","20 Aug 2024","Forest Monitoring Team","Survival rate checks and field photos were collected across sample plots.","Survival dataset anchored","sha256:forest-surv-338a"],
-["🛰️","Remote Sensing Check","12 Sep 2024","GIS / Drone Team","Satellite and drone checks validated canopy recovery and restoration boundaries.","Remote sensing proof created","sha256:forest-rs-17af"],
-["✅","Verifier Review","01 Oct 2024","Plan Vivo Reviewer","Verifier reviewed planting records, survival rates, maps and community benefit evidence.","Verification event recorded","sha256:forest-ver-ae12"],
-["♻️","Credits Retired","20 Oct 2024","Portfolio Account","Credits were retired against buyer account impact claims.","Retirement proof linked","sha256:forest-ret-2024"]
-]
-},
-{
-icon:"🌊",
-name:"Lake Victoria Blue Carbon",
-full:"Lake Victoria Blue Carbon Project",
-location:"Lake Victoria Basin, Kenya",
-type:"Wetland / Blue Carbon",
-credits:"9,800",
-standard:"Gold Standard",
-status:"Verified",
-registry:"GS-BC-5582-2025",
-vintage:"2025",
-verified:"Nov 2025",
-report:"VERST-LVBC-R-2025-004",
-hash:"sha256:e3a8a431ff7b20e782ad8f117bda9c92",
-story:"This blue carbon project protects and restores wetland ecosystems around Lake Victoria. The climate value is tied to wetland condition, carbon stock sampling, community protection activity and remote sensing. The dashboard gives buyers a clear view of how ecological restoration becomes a verified carbon asset.",
-image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=90",
-impact:[["9,800","tCO₂e issued"],["620","Hectares protected"],["14","Community groups"]],
-mrv:[
-["🌊","Wetland Boundary Mapping","03 Mar 2025","Blue Carbon Field Team","Wetland zones and shoreline boundaries were mapped with GPS and imagery.","Boundary dataset anchored","sha256:blue-map-5582"],
-["🧪","Carbon Stock Sampling","18 Apr 2025","Ecology Team","Biomass and soil carbon samples were collected across wetland plots.","Sampling evidence fingerprinted","sha256:blue-sample-819d"],
-["👥","Community Activity Logs","May–Aug 2025","Community Partners","Restoration, protection and community activity logs were compiled monthly.","Community log hash created","sha256:blue-community-22ac"],
-["🛰️","Remote Sensing Review","10 Sep 2025","GIS Team","Remote sensing checked wetland condition, restoration area and encroachment risk.","Remote sensing record anchored","sha256:blue-rs-91fd"],
-["✅","Verification Review","08 Nov 2025","Gold Standard Verifier","Verifier reviewed carbon stock calculations, maps and community evidence.","Verification record created","sha256:blue-ver-c92"],
-["🏅","Credits Issued","24 Nov 2025","Gold Standard Registry","Blue carbon credits were issued and linked to registry reference.","Certificate linked","sha256:blue-cert-5582"]
-]
-},
-{
-icon:"☀️",
-name:"Turkana Solar Mini-Grid",
-full:"Turkana Solar Mini-Grid Project",
-location:"Turkana County, Kenya",
-type:"Renewable Energy Access",
-credits:"4,200",
-standard:"Verra VCS",
-status:"Verified",
-registry:"VCS-TUR-2290-2025",
-vintage:"2025",
-verified:"Sep 2025",
-report:"VERST-TSMG-R-2025-005",
-hash:"sha256:91ae8f1d4e770fc0229bd44b3d9810bc",
-story:"The Turkana Solar Mini-Grid project improves clean energy access while reducing diesel generation. For buyers, the proof comes from meter data, diesel displacement calculations, generation logs and verifier review. The dashboard turns energy data into a simple trust trail.",
-image:"https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1400&q=90",
-impact:[["4,200","tCO₂e issued"],["11,400","People reached"],["1.9MW","Clean capacity"]],
-mrv:[
-["⚡","Meter Data Capture","01 Jun 2025","Energy Operator","Solar generation and consumption meter readings were captured from mini-grid systems.","Meter dataset anchored","sha256:solar-meter-110d"],
-["⛽","Diesel Baseline","12 Jun 2025","Energy MRV Team","Historic diesel generation and displacement assumptions were documented.","Baseline evidence hash created","sha256:solar-diesel-77e2"],
-["🔌","Generation Monitoring","Jun–Aug 2025","Mini-grid Operator","Monthly kWh generation data was logged and reconciled against meter records.","Generation log fingerprinted","sha256:solar-gen-3d98"],
-["📊","Emissions Calculation","05 Sep 2025","MRV Analyst","Diesel displacement and emissions reductions were calculated using approved factors.","Calculation output anchored","sha256:solar-calc-bc31"],
-["✅","Verifier Audit","20 Sep 2025","VCS Verifier","Verifier checked meter records, baseline assumptions and emissions calculations.","Verification event recorded","sha256:solar-ver-810b"],
-["🏅","Credits Issued","30 Sep 2025","Verra Registry","Renewable energy credits were issued and linked to the project registry record.","Certificate linked","sha256:solar-cert-2290"]
-]
-}
+{icon:"🔥",name:"Western Kenya Clean Cooking",full:"Western Kenya Clean Cooking Project",location:"Kisumu & Homa Bay, Kenya",type:"Improved Cookstoves",credits:"120,000",standard:"Gold Standard",status:"Verified",registry:"GS-13244-2025",vintage:"2025",verified:"Jan 2026",report:"VERST-WKCCP-R-2025-001",hash:"sha256:a7f3e9cdb5a1e82f944b7e9b2f4d9c3",story:"Across western Kenya, many households still rely on traditional biomass for cooking. This project distributes improved cookstoves that reduce fuel use, lower household smoke exposure and create measurable emissions reductions. For a buyer, the value is not just the credit — it is the ability to see the proof behind the distribution, usage monitoring, calculations and issuance.",image:"https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1400&q=90",impact:[["58,600","Households reached"],["120,000","tCO₂e issued"],["2","Counties covered"]],mrv:[["🧾","Household Baseline","01 Aug 2025","Field Enumerators","Baseline household cooking methods, fuel usage and GPS records were collected before stove deployment.","Baseline dataset fingerprinted","sha256:ccook-base-91f0"],["🔥","Stove Distribution","18 Aug 2025","Distribution Partners","Improved cookstoves were issued with household IDs, serial records and signed delivery confirmations.","Distribution record anchored","sha256:ccook-dist-a82b"],["📱","Usage Monitoring","15 Oct 2025","Verst Carbon Field Team","Stove usage checks, sample surveys and fuel saving calculations were compiled for MRV reporting.","Usage monitoring hash created","sha256:ccook-use-44e2"],["📄","MRV Report Submitted","10 Nov 2025","Verst Carbon MRV Team","Monitoring data was compiled into the approved clean cooking methodology report.","Report fingerprint created","sha256:ccook-report-d9c3"],["✅","Independent Verification","05 Dec 2025","Third-party Verifier","Verifier reviewed usage evidence, sampling logic and emissions reduction calculations.","Verification event recorded","sha256:ccook-ver-6bb0"],["🏅","Credits Issued","20 Jan 2026","Gold Standard Registry","Credits were issued and linked to the verified project record.","Certificate linked","sha256:ccook-cert-102e"]]},
+{icon:"🌱",name:"Nakuru Soil Carbon",full:"Nakuru Soil Carbon Programme",location:"Nakuru County, Kenya",type:"Soil Carbon / Regenerative Agriculture",credits:"32,500",standard:"Verra VCS",status:"Verified",registry:"VCS-90421-2025",vintage:"2025",verified:"Dec 2025",report:"VERST-NSC-R-2025-002",hash:"sha256:b42a91e0ddc39072aa8e9d5f712c0a11",story:"This programme works with farmers adopting regenerative practices that improve soil health and increase soil organic carbon. The project story matters because buyers want to understand how farm practices translate into measurable climate outcomes. The dashboard shows the link between field practices, soil samples, lab results, modelling and verified credits.",image:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=90",impact:[["7,400","Farmers onboarded"],["32,500","tCO₂e issued"],["18,200","Hectares tracked"]],mrv:[["🧪","Baseline Soil Sampling","03 Apr 2025","Soil Lab Team","Initial soil samples were collected from participating farms to establish baseline organic carbon levels.","Baseline lab records anchored","sha256:soil-base-2f91"],["🚜","Farm Practice Tracking","May–Sep 2025","Agronomy Team","Regenerative practices were tracked, including cover crops, residue management and reduced tillage.","Practice log fingerprinted","sha256:soil-practice-882a"],["🔬","Lab Testing","22 Oct 2025","Independent Lab","Follow-up samples were tested and matched against field plots and farm IDs.","Lab result hash created","sha256:soil-lab-71da"],["📈","Carbon Modelling","04 Nov 2025","MRV Modelling Team","Soil carbon changes were modelled using approved methodology and sampling data.","Model output anchored","sha256:soil-model-aa0c"],["✅","Verification Review","12 Dec 2025","VCS Verifier","Verifier reviewed sampling, farm records, model assumptions and calculations.","Verification record created","sha256:soil-ver-0a11"],["🏅","Credits Issued","28 Dec 2025","Verra Registry","Verified soil carbon credits were issued and linked to the registry reference.","Certificate linked","sha256:soil-cert-9042"]]},
+{icon:"🌳",name:"Aberdare Forest Restoration",full:"Aberdare Forest Restoration Project",location:"Aberdare Range, Kenya",type:"Forest Restoration",credits:"18,000",standard:"Plan Vivo",status:"Retired",registry:"PV-ABR-7781-2024",vintage:"2024",verified:"Oct 2024",report:"VERST-AFR-R-2024-009",hash:"sha256:cc72b7a1d90e4452fc17a88bb703ae12",story:"The Aberdare ecosystem is one of Kenya’s most important water towers and biodiversity landscapes. This restoration project connects planting records, survival monitoring, GIS boundaries, remote sensing and community activity into a single buyer-friendly proof trail. Retired credits remain visible so the buyer can prove past climate claims.",image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=90",impact:[["410,000","Trees planted"],["18,000","tCO₂e retired"],["1,850","Hectares restored"]],mrv:[["🗺️","Baseline Mapping","15 Feb 2024","GIS Team","Restoration zones were mapped with boundaries, land status and baseline vegetation condition.","GIS boundary hash anchored","sha256:forest-map-7701"],["🌱","Tree Planting Records","Apr–Jun 2024","Community Restoration Teams","Seedlings planted, species mix, plot IDs and community records were logged.","Planting records fingerprinted","sha256:forest-plant-9b20"],["🌳","Survival Monitoring","20 Aug 2024","Forest Monitoring Team","Survival rate checks and field photos were collected across sample plots.","Survival dataset anchored","sha256:forest-surv-338a"],["🛰️","Remote Sensing Check","12 Sep 2024","GIS / Drone Team","Satellite and drone checks validated canopy recovery and restoration boundaries.","Remote sensing proof created","sha256:forest-rs-17af"],["✅","Verifier Review","01 Oct 2024","Plan Vivo Reviewer","Verifier reviewed planting records, survival rates, maps and community benefit evidence.","Verification event recorded","sha256:forest-ver-ae12"],["♻️","Credits Retired","20 Oct 2024","Portfolio Account","Credits were retired against buyer account impact claims.","Retirement proof linked","sha256:forest-ret-2024"]]},
+{icon:"🌊",name:"Lake Victoria Blue Carbon",full:"Lake Victoria Blue Carbon Project",location:"Lake Victoria Basin, Kenya",type:"Wetland / Blue Carbon",credits:"9,800",standard:"Gold Standard",status:"Verified",registry:"GS-BC-5582-2025",vintage:"2025",verified:"Nov 2025",report:"VERST-LVBC-R-2025-004",hash:"sha256:e3a8a431ff7b20e782ad8f117bda9c92",story:"This blue carbon project protects and restores wetland ecosystems around Lake Victoria. The climate value is tied to wetland condition, carbon stock sampling, community protection activity and remote sensing. The dashboard gives buyers a clear view of how ecological restoration becomes a verified carbon asset.",image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=90",impact:[["9,800","tCO₂e issued"],["620","Hectares protected"],["14","Community groups"]],mrv:[["🌊","Wetland Boundary Mapping","03 Mar 2025","Blue Carbon Field Team","Wetland zones and shoreline boundaries were mapped with GPS and imagery.","Boundary dataset anchored","sha256:blue-map-5582"],["🧪","Carbon Stock Sampling","18 Apr 2025","Ecology Team","Biomass and soil carbon samples were collected across wetland plots.","Sampling evidence fingerprinted","sha256:blue-sample-819d"],["👥","Community Activity Logs","May–Aug 2025","Community Partners","Restoration, protection and community activity logs were compiled monthly.","Community log hash created","sha256:blue-community-22ac"],["🛰️","Remote Sensing Review","10 Sep 2025","GIS Team","Remote sensing checked wetland condition, restoration area and encroachment risk.","Remote sensing record anchored","sha256:blue-rs-91fd"],["✅","Verification Review","08 Nov 2025","Gold Standard Verifier","Verifier reviewed carbon stock calculations, maps and community evidence.","Verification record created","sha256:blue-ver-c92"],["🏅","Credits Issued","24 Nov 2025","Gold Standard Registry","Blue carbon credits were issued and linked to registry reference.","Certificate linked","sha256:blue-cert-5582"]]},
+{icon:"☀️",name:"Turkana Solar Mini-Grid",full:"Turkana Solar Mini-Grid Project",location:"Turkana County, Kenya",type:"Renewable Energy Access",credits:"4,200",standard:"Verra VCS",status:"Verified",registry:"VCS-TUR-2290-2025",vintage:"2025",verified:"Sep 2025",report:"VERST-TSMG-R-2025-005",hash:"sha256:91ae8f1d4e770fc0229bd44b3d9810bc",story:"The Turkana Solar Mini-Grid project improves clean energy access while reducing diesel generation. For buyers, the proof comes from meter data, diesel displacement calculations, generation logs and verifier review. The dashboard turns energy data into a simple trust trail.",image:"https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1400&q=90",impact:[["4,200","tCO₂e issued"],["11,400","People reached"],["1.9MW","Clean capacity"]],mrv:[["⚡","Meter Data Capture","01 Jun 2025","Energy Operator","Solar generation and consumption meter readings were captured from mini-grid systems.","Meter dataset anchored","sha256:solar-meter-110d"],["⛽","Diesel Baseline","12 Jun 2025","Energy MRV Team","Historic diesel generation and displacement assumptions were documented.","Baseline evidence hash created","sha256:solar-diesel-77e2"],["🔌","Generation Monitoring","Jun–Aug 2025","Mini-grid Operator","Monthly kWh generation data was logged and reconciled against meter records.","Generation log fingerprinted","sha256:solar-gen-3d98"],["📊","Emissions Calculation","05 Sep 2025","MRV Analyst","Diesel displacement and emissions reductions were calculated using approved factors.","Calculation output anchored","sha256:solar-calc-bc31"],["✅","Verifier Audit","20 Sep 2025","VCS Verifier","Verifier checked meter records, baseline assumptions and emissions calculations.","Verification event recorded","sha256:solar-ver-810b"],["🏅","Credits Issued","30 Sep 2025","Verra Registry","Renewable energy credits were issued and linked to the project registry record.","Certificate linked","sha256:solar-cert-2290"]]}
 ];
 
 const certs=[
@@ -400,22 +199,21 @@ if((id==="certificates"&&b.textContent.toLowerCase().includes("certificates"))||
 window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function renderProjects(){
+function renderProjectButtons(){
 document.getElementById("projectList").innerHTML=projects.map((p,i)=>`
 <button class="project-btn ${i===selected?"active":""}" onclick="selectProject(${i})">
 <div class="project-icon">${p.icon}</div><b>${p.name}</b><div class="small">${p.location}</div><div class="green" style="margin-top:8px">${p.credits} tCO₂e</div>
 </button>`).join("");
+}
 
-document.getElementById("allProjects").innerHTML=projects.map((p,i)=>`
-<div class="card project-card" onclick="selectProject(${i});show('projects')">
+function renderProjectGallery(){
+document.getElementById("projectGallery").innerHTML=projects.map((p,i)=>`
+<div class="card project-card ${i===selected?"active":""}" onclick="selectProject(${i});show('projects')">
 <div class="project-card-img" style="background-image:url('${p.image}')"></div>
 <div class="project-card-body">
 <div class="project-icon">${p.icon}</div>
 <h3 class="project-card-title">${p.full}</h3>
-<div class="pills" style="margin-bottom:12px">
-<span class="pill">${p.location}</span>
-<span class="pill">${p.standard}</span>
-</div>
+<div class="pills" style="margin-bottom:12px"><span class="pill">${p.location}</span><span class="pill">${p.standard}</span></div>
 <p class="small">${p.story}</p>
 <div class="impact-row">
 <div class="impact-box"><b>${p.impact[0][0]}</b><span class="small">${p.impact[0][1]}</span></div>
@@ -429,7 +227,8 @@ document.getElementById("allProjects").innerHTML=projects.map((p,i)=>`
 function selectProject(i){
 selected=i;
 const p=projects[i];
-renderProjects();
+renderProjectButtons();
+renderProjectGallery();
 
 document.getElementById("pNameSmall").innerText=p.name;
 document.getElementById("pCredits").innerText=p.credits;
@@ -496,7 +295,8 @@ document.getElementById("certTable").innerHTML=certs.map(c=>`
 <tr><td><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[2]}</td><td><span class="status ${c[3]==="Retired"?"retired":"verified"}">${c[3]}</span></td><td>${c[4]}</td></tr>`).join("");
 }
 
-renderProjects();
+renderProjectButtons();
+renderProjectGallery();
 renderCerts();
 selectProject(0);
 </script>
