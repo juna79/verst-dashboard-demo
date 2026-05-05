@@ -7,232 +7,204 @@
 
 <style>
 *{box-sizing:border-box}
-:root{
---bg:#06101d;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.085);
---line:rgba(255,255,255,.12);--muted:rgba(255,255,255,.62);--soft:rgba(255,255,255,.78);
---green:#4ade80;--green2:#22c55e;--gold:#f3c969;--blue:#38bdf8;
-}
+:root{--bg:#06101d;--panel:rgba(255,255,255,.055);--line:rgba(255,255,255,.12);--muted:rgba(255,255,255,.62);--green:#4ade80;--gold:#f3c969}
 body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#fff}
-.app{min-height:100vh;display:grid;grid-template-columns:300px 1fr;background:
-radial-gradient(circle at 80% 4%,rgba(74,222,128,.18),transparent 34%),
-radial-gradient(circle at 10% 90%,rgba(243,201,105,.10),transparent 30%),
-linear-gradient(135deg,#050b14 0%,#081525 55%,#06101d 100%)}
+.app{min-height:100vh;display:grid;grid-template-columns:300px 1fr;background:radial-gradient(circle at 80% 4%,rgba(74,222,128,.18),transparent 34%),radial-gradient(circle at 10% 90%,rgba(243,201,105,.10),transparent 30%),linear-gradient(135deg,#050b14 0%,#081525 55%,#06101d 100%)}
 aside{border-right:1px solid var(--line);padding:26px 22px;background:rgba(0,0,0,.30)}
-.logo{display:flex;gap:14px;align-items:center;margin-bottom:28px}
-.logo-mark{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,#4ade80,#16a34a);display:grid;place-items:center;color:#031009;font-weight:1000;font-size:31px;box-shadow:0 18px 40px rgba(34,197,94,.22)}
-.logo-title{font-size:23px;font-weight:950}.logo-sub{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.64)}
-nav button{width:100%;border:0;border-radius:18px;background:transparent;color:rgba(255,255,255,.66);padding:14px 16px;margin:5px 0;text-align:left;cursor:pointer;font-weight:850;transition:.2s}
+.logo{display:flex;gap:14px;align-items:center;margin-bottom:28px}.logo-mark{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,#4ade80,#16a34a);display:grid;place-items:center;color:#031009;font-weight:1000;font-size:31px}.logo-title{font-size:23px;font-weight:950}.logo-sub{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.64)}
+nav button{width:100%;border:0;border-radius:18px;background:transparent;color:rgba(255,255,255,.66);padding:14px 16px;margin:5px 0;text-align:left;cursor:pointer;font-weight:850}
 nav button:hover,nav button.active{background:rgba(74,222,128,.16);color:#86efac;box-shadow:inset 3px 0 0 var(--green)}
-.account{margin-top:26px;border:1px solid rgba(74,222,128,.24);background:rgba(74,222,128,.10);border-radius:26px;padding:20px}
-.account h3{margin:0 0 12px;font-size:18px}.account-row{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.08);padding:10px 0;font-size:13px}.account-row span{color:var(--muted)}.account-row b{text-align:right}
-main{padding:30px}.top{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-bottom:20px}
-.kicker{color:var(--green);font-weight:1000;text-transform:uppercase;letter-spacing:1.8px;font-size:12px}
-h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:8px 0 12px;letter-spacing:-1.4px}
-.muted{color:var(--muted)}.soft{color:var(--soft)}.green{color:var(--green)}.gold{color:var(--gold)}
+.account{margin-top:26px;border:1px solid rgba(74,222,128,.24);background:rgba(74,222,128,.10);border-radius:26px;padding:20px}.account h3{margin:0 0 12px}.account-row{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08);padding:10px 0;font-size:13px}.account-row span{color:var(--muted)}
+main{padding:30px}.top{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-bottom:20px}.kicker{color:var(--green);font-weight:1000;text-transform:uppercase;letter-spacing:1.8px;font-size:12px}
+h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:8px 0 12px}.muted{color:var(--muted)}.green{color:var(--green)}
 .pills{display:flex;gap:10px;flex-wrap:wrap}.pill{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.06);color:rgba(255,255,255,.75);padding:10px 14px;border-radius:999px;font-size:13px;font-weight:800}
-.verified-card{border:1px solid rgba(74,222,128,.28);background:linear-gradient(135deg,rgba(34,197,94,.23),rgba(9,20,34,.7));border-radius:28px;padding:22px;display:flex;align-items:center;gap:16px}
-.big-check{width:70px;height:70px;border-radius:50%;background:var(--green);color:#041007;display:grid;place-items:center;font-size:42px;font-weight:1000}.verified-card b{font-size:26px}
+.verified-card{border:1px solid rgba(74,222,128,.28);background:linear-gradient(135deg,rgba(34,197,94,.23),rgba(9,20,34,.7));border-radius:28px;padding:22px;display:flex;align-items:center;gap:16px}.big-check{width:70px;height:70px;border-radius:50%;background:var(--green);color:#041007;display:grid;place-items:center;font-size:42px;font-weight:1000}.verified-card b{font-size:26px}
 .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-bottom:18px}
 .card{border:1px solid var(--line);background:var(--panel);border-radius:28px;padding:23px;box-shadow:0 18px 50px rgba(0,0,0,.18)}
-.metric-icon{width:54px;height:54px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}
-.metric-label{color:rgba(255,255,255,.58);font-size:13px;font-weight:800}.metric-value{font-size:27px;font-weight:1000;margin:6px 0;letter-spacing:-.6px}.small{font-size:13px;color:rgba(255,255,255,.55);line-height:1.55}
+.metric-icon{width:54px;height:54px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}.metric-label{color:rgba(255,255,255,.58);font-size:13px;font-weight:800}.metric-value{font-size:27px;font-weight:1000;margin:6px 0}.small{font-size:13px;color:rgba(255,255,255,.55);line-height:1.55}
 .section-title{color:var(--green);text-transform:uppercase;letter-spacing:1.4px;font-size:13px;font-weight:1000;margin:0 0 16px}
-.project-list{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.project-btn{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.20);border-radius:22px;padding:16px;cursor:pointer;color:white;text-align:left;transition:.2s;min-height:145px}
-.project-btn:hover,.project-btn.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}.project-btn b{display:block;margin:8px 0;line-height:1.2}.project-icon{font-size:28px}
-.hero-img{min-height:360px;border-radius:24px;overflow:hidden;background-size:cover;background-position:center;display:flex;align-items:end;padding:22px;border:1px solid rgba(255,255,255,.12);position:relative}
-.hero-img:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72))}
-.hero-img div{position:relative;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:16px;backdrop-filter:blur(12px)}
-.timeline-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.20);border-radius:24px;padding:18px;cursor:pointer;transition:.2s;min-height:168px}
-.step:hover,.step.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}.step-icon{width:52px;height:52px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}.step b{display:block;font-size:16px;line-height:1.25;margin-bottom:9px}
-.row{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);border-radius:18px;padding:15px;margin:11px 0}.row span{display:block;color:rgba(255,255,255,.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:900}.row b{font-size:17px}.hash{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px!important;word-break:break-all}
-.btn{border:0;border-radius:16px;background:var(--green);color:#041007;padding:13px 16px;font-weight:1000;cursor:pointer;transition:.2s}.btn:hover{transform:translateY(-1px);background:#86efac}.btn.secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:white}
+.project-list{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.project-btn{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.20);border-radius:22px;padding:16px;cursor:pointer;color:white;text-align:left;min-height:145px}.project-btn:hover,.project-btn.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}.project-icon{font-size:28px}.project-btn b{display:block;margin:8px 0}
+.hero-img{min-height:360px;border-radius:24px;overflow:hidden;background-size:cover;background-position:center;display:flex;align-items:end;padding:22px;border:1px solid rgba(255,255,255,.12);position:relative}.hero-img:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72))}.hero-img div{position:relative;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:16px}
+.timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.20);border-radius:24px;padding:18px;cursor:pointer;min-height:168px}.step:hover,.step.active{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.12);transform:translateY(-2px)}.step-icon{width:52px;height:52px;border-radius:18px;background:rgba(74,222,128,.16);display:grid;place-items:center;font-size:25px;margin-bottom:13px}.step b{display:block;font-size:16px;margin-bottom:9px}
+.row{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);border-radius:18px;padding:15px;margin:11px 0}.row span{display:block;color:rgba(255,255,255,.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:900}.row b{font-size:17px}.hash{font-family:monospace;font-size:14px!important;word-break:break-all}
+.btn{border:0;border-radius:16px;background:var(--green);color:#041007;padding:13px 16px;font-weight:1000;cursor:pointer}.btn.secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:white}
 .table{width:100%;border-collapse:collapse}.table th{text-align:left;color:rgba(255,255,255,.48);font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:12px}.table td{padding:14px 12px;border-top:1px solid rgba(255,255,255,.08);font-size:14px}.status{display:inline-block;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:950}.status.verified{background:rgba(74,222,128,.16);color:#86efac}.status.retired{background:rgba(243,201,105,.16);color:#f3c969}
-.qr{width:230px;height:230px;border-radius:26px;margin:10px auto 20px;background:linear-gradient(90deg,#111 10px,transparent 10px) 0 0/28px 28px,linear-gradient(#111 10px,transparent 10px) 0 0/28px 28px,white;position:relative;border:14px solid white;box-shadow:0 25px 60px rgba(0,0,0,.35)}
-.qr:before,.qr:after{content:"";position:absolute;width:55px;height:55px;border:12px solid #111;background:white}.qr:before{top:8px;left:8px}.qr:after{right:8px;bottom:8px}
-.certificate-paper{background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(248,242,223,.96));color:#15202b;border-radius:26px;padding:40px;border:1px solid rgba(243,201,105,.65);box-shadow:0 35px 80px rgba(0,0,0,.32)}
-.cert-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:18px;margin-bottom:28px}.cert-head h3{margin:5px 0 0;font-size:32px}.cert-kicker{font-size:12px;letter-spacing:5px;color:rgba(0,0,0,.52);font-weight:900}.cert-badge{background:rgba(243,201,105,.55);border-radius:999px;padding:12px 18px;font-weight:1000}.cert-project{text-align:center;font-size:26px;font-weight:1000;margin-bottom:22px}.cert-tonnes{text-align:center;font-size:54px;font-weight:1000}.cert-sub{text-align:center;color:rgba(0,0,0,.58);font-weight:800}.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;text-align:center;margin-top:34px}.cert-grid div{border-top:1px solid rgba(0,0,0,.12);padding-top:14px;font-size:14px}.cert-sign{display:flex;justify-content:space-between;align-items:end;margin-top:42px}.signature{font-family:Georgia,serif;font-size:32px;font-style:italic}.seal{width:105px;height:105px;border-radius:50%;border:5px solid #b45309;color:#92400e;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:1000;transform:rotate(-8deg)}
+.qr{width:230px;height:230px;border-radius:26px;margin:10px auto 20px;background:linear-gradient(90deg,#111 10px,transparent 10px) 0 0/28px 28px,linear-gradient(#111 10px,transparent 10px) 0 0/28px 28px,white;border:14px solid white}
+.certificate-paper{background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(248,242,223,.96));color:#15202b;border-radius:26px;padding:40px;border:1px solid rgba(243,201,105,.65)}.cert-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:18px;margin-bottom:28px}.cert-head h3{margin:5px 0 0;font-size:32px}.cert-kicker{font-size:12px;letter-spacing:5px;color:rgba(0,0,0,.52);font-weight:900}.cert-badge{background:rgba(243,201,105,.55);border-radius:999px;padding:12px 18px;font-weight:1000}.cert-project{text-align:center;font-size:26px;font-weight:1000;margin-bottom:22px}.cert-tonnes{text-align:center;font-size:54px;font-weight:1000}.cert-sub{text-align:center;color:rgba(0,0,0,.58);font-weight:800}.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;text-align:center;margin-top:34px}.seal{width:105px;height:105px;border-radius:50%;border:5px solid #b45309;color:#92400e;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:1000;transform:rotate(-8deg)}
 .hidden{display:none}.caption{color:var(--green);text-align:right;font-weight:900;margin:12px 0 0}
 @media(max-width:1100px){.app{grid-template-columns:1fr}.top,.grid2{grid-template-columns:1fr}.grid5,.grid4,.project-list,.timeline-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){main,aside{padding:18px}.grid5,.grid4,.project-list,.timeline-grid,.cert-grid{grid-template-columns:1fr}.cert-tonnes{font-size:40px}.certificate-paper{padding:24px}}
+@media(max-width:640px){main,aside{padding:18px}.grid5,.grid4,.project-list,.timeline-grid,.cert-grid{grid-template-columns:1fr}.cert-tonnes{font-size:40px}}
 </style>
 </head>
 
 <body>
 <div class="app">
 <aside>
-  <div class="logo">
-    <div class="logo-mark">V</div>
-    <div><div class="logo-title">VERST</div><div class="logo-sub">CARBON</div></div>
-  </div>
-
-  <nav>
-    <button class="active" onclick="show('portfolio', this)">🏠 Portfolio</button>
-    <button onclick="show('projects', this)">🌍 Projects</button>
-    <button onclick="show('timeline', this)">⏱ MRV Timeline</button>
-    <button onclick="show('report', this)">📄 Report Integrity</button>
-    <button onclick="show('certificates', this)">🏅 Certificates</button>
-  </nav>
-
-  <div class="account">
-    <h3>Account Owner</h3>
-    <div class="account-row"><span>Client</span><b id="clientName">GreenLeaf Foods Ltd</b></div>
-    <div class="account-row"><span>Account Type</span><b>Buyer Account</b></div>
-    <div class="account-row"><span>Location</span><b>Nairobi, Kenya</b></div>
-    <div class="account-row"><span>Account ID</span><b>GLF-KE-2048</b></div>
-    <div class="account-row"><span>Status</span><b class="green">Active</b></div>
-  </div>
+<div class="logo"><div class="logo-mark">V</div><div><div class="logo-title">VERST</div><div class="logo-sub">CARBON</div></div></div>
+<nav>
+<button class="active" onclick="show('portfolio', this)">🏠 Portfolio</button>
+<button onclick="show('projects', this)">🌍 Projects</button>
+<button onclick="show('timeline', this)">⏱ Project MRV</button>
+<button onclick="show('report', this)">📄 Report Integrity</button>
+<button onclick="show('certificates', this)">🏅 Certificates</button>
+</nav>
+<div class="account">
+<h3>Account Owner</h3>
+<div class="account-row"><span>Client</span><b>GreenLeaf Foods Ltd</b></div>
+<div class="account-row"><span>Account Type</span><b>Buyer Account</b></div>
+<div class="account-row"><span>Location</span><b>Nairobi, Kenya</b></div>
+<div class="account-row"><span>Account ID</span><b>GLF-KE-2048</b></div>
+<div class="account-row"><span>Status</span><b class="green">Active</b></div>
+</div>
 </aside>
 
 <main>
-  <section class="top">
-    <div>
-      <div class="kicker">Carbon portfolio verification dashboard</div>
-      <h1>Buyer-facing proof layer for verified carbon assets</h1>
-      <div class="pills">
-        <span class="pill">Client: GreenLeaf Foods Ltd</span>
-        <span class="pill">Account ID: GLF-KE-2048</span>
-        <span class="pill">Portfolio Status: Active</span>
-        <span class="pill">Kenya / East Africa</span>
-      </div>
-    </div>
-    <div class="verified-card">
-      <div class="big-check">✓</div>
-      <div><b>VERIFIED</b><div class="muted">Portfolio proof layer active</div></div>
-    </div>
-  </section>
+<section class="top">
+<div>
+<div class="kicker">Carbon portfolio verification dashboard</div>
+<h1>Buyer-facing proof layer for verified carbon assets</h1>
+<div class="pills"><span class="pill">Client: GreenLeaf Foods Ltd</span><span class="pill">Account ID: GLF-KE-2048</span><span class="pill">Portfolio Status: Active</span><span class="pill">Kenya / East Africa</span></div>
+</div>
+<div class="verified-card"><div class="big-check">✓</div><div><b>VERIFIED</b><div class="muted">Portfolio proof layer active</div></div></div>
+</section>
 
-  <section id="portfolio">
-    <div class="grid5">
-      <div class="card"><div class="metric-icon">🌿</div><div class="metric-label">Credits Held</div><div class="metric-value">184,500</div><div class="small">tCO₂e in portfolio</div></div>
-      <div class="card"><div class="metric-icon">♻️</div><div class="metric-label">Credits Retired</div><div class="metric-value">42,000</div><div class="small">tCO₂e retired</div></div>
-      <div class="card"><div class="metric-icon">🌍</div><div class="metric-label">Active Projects</div><div class="metric-value">5</div><div class="small">verified project assets</div></div>
-      <div class="card"><div class="metric-icon">🏅</div><div class="metric-label">Certificates</div><div class="metric-value">9</div><div class="small">verified certificates</div></div>
-      <div class="card"><div class="metric-icon">🛡️</div><div class="metric-label">Audit Status</div><div class="metric-value">Clean</div><div class="small">all proofs matched</div></div>
-    </div>
+<section id="portfolio">
+<div class="grid5">
+<div class="card"><div class="metric-icon">🌿</div><div class="metric-label">Credits Held</div><div class="metric-value">184,500</div><div class="small">tCO₂e in portfolio</div></div>
+<div class="card"><div class="metric-icon">♻️</div><div class="metric-label">Credits Retired</div><div class="metric-value">42,000</div><div class="small">tCO₂e retired</div></div>
+<div class="card"><div class="metric-icon">🌍</div><div class="metric-label">Active Projects</div><div class="metric-value">5</div><div class="small">verified project assets</div></div>
+<div class="card"><div class="metric-icon">🏅</div><div class="metric-label">Certificates</div><div class="metric-value">9</div><div class="small">verified certificates</div></div>
+<div class="card"><div class="metric-icon">🛡️</div><div class="metric-label">Audit Status</div><div class="metric-value">Clean</div><div class="small">all proofs matched</div></div>
+</div>
 
-    <div class="card">
-      <h2 class="section-title">Select project</h2>
-      <div class="project-list" id="projectList"></div>
-    </div>
+<div class="card"><h2 class="section-title">Select project</h2><div class="project-list" id="projectList"></div></div>
 
-    <div class="grid2">
-      <div class="card">
-        <h2 class="section-title">Current selected asset</h2>
-        <div class="grid4">
-          <div><div class="metric-label">Project</div><div class="metric-value" id="pNameSmall">Western Kenya Clean Cooking</div></div>
-          <div><div class="metric-label">Credits</div><div class="metric-value" id="pCredits">120,000</div></div>
-          <div><div class="metric-label">Standard</div><div class="metric-value" id="pStandard">Gold Standard</div></div>
-          <div><div class="metric-label">Status</div><div class="metric-value green" id="pStatus">Verified</div></div>
-        </div>
-        <button class="btn" onclick="show('timeline')">Open MRV workflow →</button>
-        <button class="btn secondary" onclick="show('certificates')" style="margin-left:8px">View certificates</button>
-      </div>
+<div class="grid2">
+<div class="card">
+<h2 class="section-title">Current selected asset</h2>
+<div class="grid4">
+<div><div class="metric-label">Project</div><div class="metric-value" id="pNameSmall"></div></div>
+<div><div class="metric-label">Credits</div><div class="metric-value" id="pCredits"></div></div>
+<div><div class="metric-label">Standard</div><div class="metric-value" id="pStandard"></div></div>
+<div><div class="metric-label">Status</div><div class="metric-value green" id="pStatus"></div></div>
+</div>
+<button class="btn" onclick="show('timeline')">Open project-specific MRV →</button>
+<button class="btn secondary" onclick="show('certificates')" style="margin-left:8px">View certificates</button>
+</div>
+<div class="card">
+<h2 class="section-title">Buyer actions</h2>
+<button class="btn" style="width:100%;margin-bottom:10px" onclick="show('report')">Verify latest report</button>
+<button class="btn secondary" style="width:100%;margin-bottom:10px">Open registry reference</button>
+<button class="btn secondary" style="width:100%;margin-bottom:10px">Download audit pack</button>
+<button class="btn secondary" style="width:100%">Retire credits</button>
+</div>
+</div>
+<div class="caption">Your carbon portfolio. What you own. What is verified. What proof sits behind it.</div>
+</section>
 
-      <div class="card">
-        <h2 class="section-title">Buyer actions</h2>
-        <button class="btn" style="width:100%;margin-bottom:10px" onclick="show('report')">Verify latest report</button>
-        <button class="btn secondary" style="width:100%;margin-bottom:10px">Open registry reference</button>
-        <button class="btn secondary" style="width:100%;margin-bottom:10px">Download audit pack</button>
-        <button class="btn secondary" style="width:100%">Retire credits</button>
-      </div>
-    </div>
+<section id="projects" class="hidden">
+<div class="grid2">
+<div class="card">
+<h2 class="section-title" id="projectTitle"></h2>
+<div class="pills" style="margin-bottom:18px"><span class="pill" id="projectLocation"></span><span class="pill" id="projectType"></span><span class="pill" id="projectRegistry"></span></div>
+<p class="soft" id="projectStory" style="line-height:1.75"></p>
+<div class="grid4" style="margin-top:20px">
+<div class="card"><div class="metric-label">Credits Issued</div><div class="metric-value" id="projCredits2"></div></div>
+<div class="card"><div class="metric-label">Vintage</div><div class="metric-value" id="projVintage"></div></div>
+<div class="card"><div class="metric-label">Standard</div><div class="metric-value" id="projStandard2"></div></div>
+<div class="card"><div class="metric-label">Last Verified</div><div class="metric-value" id="projVerified"></div></div>
+</div>
+</div>
+<div class="hero-img" id="projectImage"><div><b id="imageLabel"></b><p class="small">Buyer-friendly project context connected to verification records.</p></div></div>
+</div>
+</section>
 
-    <div class="caption">Your carbon portfolio. What you own. What is verified. What proof sits behind it.</div>
-  </section>
+<section id="timeline" class="hidden">
+<div class="grid2">
+<div class="card">
+<h2 class="section-title" id="timelineTitle">Project MRV workflow</h2>
+<p class="small" id="timelineIntro"></p>
+<div class="timeline-grid" id="timelineSteps"></div>
+</div>
+<div class="card" id="stepDetail" style="background:rgba(74,222,128,.10);border-color:rgba(74,222,128,.28)"></div>
+</div>
+</section>
 
-  <section id="projects" class="hidden">
-    <div class="grid2">
-      <div class="card">
-        <h2 class="section-title" id="projectTitle">Western Kenya Clean Cooking Project</h2>
-        <div class="pills" style="margin-bottom:18px">
-          <span class="pill" id="projectLocation">Kisumu & Homa Bay</span>
-          <span class="pill" id="projectType">Improved Cookstoves</span>
-          <span class="pill" id="projectRegistry">GS-13244-2025</span>
-        </div>
-        <p class="soft" id="projectStory" style="line-height:1.75"></p>
-        <div class="grid4" style="margin-top:20px">
-          <div class="card"><div class="metric-label">Credits Issued</div><div class="metric-value" id="projCredits2">120,000</div></div>
-          <div class="card"><div class="metric-label">Vintage</div><div class="metric-value" id="projVintage">2025</div></div>
-          <div class="card"><div class="metric-label">Standard</div><div class="metric-value" id="projStandard2">Gold Standard</div></div>
-          <div class="card"><div class="metric-label">Last Verified</div><div class="metric-value" id="projVerified">Jan 2026</div></div>
-        </div>
-      </div>
-      <div class="hero-img" id="projectImage"><div><b id="imageLabel">Clean cooking impact</b><p class="small">Buyer-friendly project context connected to real verification records.</p></div></div>
-    </div>
-  </section>
+<section id="report" class="hidden">
+<div class="grid2">
+<div class="card">
+<h2 class="section-title">Report integrity check</h2>
+<p class="small">Buyer or auditor checks whether the report is the original approved version.</p>
+<div class="row"><span>Selected Project</span><b id="reportProject"></b></div>
+<div class="row"><span>Report ID</span><b id="reportId"></b></div>
+<div class="row"><span>Document Hash</span><b class="hash" id="reportHash"></b></div>
+<div class="row"><span>Status</span><b class="green">✓ Original document verified</b></div>
+</div>
+<div class="card" style="text-align:center"><h2 class="section-title">Scan to verify</h2><div class="qr"></div><p class="small">QR opens a public verification page with timeline, report fingerprint, certificate and registry reference.</p><button class="btn">Open verification page</button></div>
+</div>
+</section>
 
-  <section id="timeline" class="hidden">
-    <div class="grid2">
-      <div class="card">
-        <h2 class="section-title">MRV workflow</h2>
-        <p class="small">Click each stage to show what was checked, who handled it, and what proof was created.</p>
-        <div class="timeline-grid" id="timelineSteps"></div>
-      </div>
-      <div class="card" id="stepDetail" style="background:rgba(74,222,128,.10);border-color:rgba(74,222,128,.28)"></div>
-    </div>
-  </section>
-
-  <section id="report" class="hidden">
-    <div class="grid2">
-      <div class="card">
-        <h2 class="section-title">Report integrity check</h2>
-        <p class="small">Buyer or auditor checks whether the report is the original approved version.</p>
-        <div class="row"><span>Selected Project</span><b id="reportProject">Western Kenya Clean Cooking Project</b></div>
-        <div class="row"><span>Report ID</span><b id="reportId">VERST-WKCCP-R-2025-001</b></div>
-        <div class="row"><span>Document Hash</span><b class="hash" id="reportHash">sha256:a7f3e9cdb5a1e82f944b7e9b2f4d9c3</b></div>
-        <div class="row"><span>Status</span><b class="green">✓ Original document verified</b></div>
-      </div>
-      <div class="card" style="text-align:center">
-        <h2 class="section-title">Scan to verify</h2>
-        <div class="qr"></div>
-        <p class="small">QR opens a public verification page with timeline, report fingerprint, certificate and registry reference.</p>
-        <button class="btn">Open verification page</button>
-      </div>
-    </div>
-  </section>
-
-  <section id="certificates" class="hidden">
-    <div class="grid2">
-      <div class="card">
-        <h2 class="section-title">Certificate archive</h2>
-        <table class="table">
-          <thead><tr><th>Certificate</th><th>Project</th><th>Credits</th><th>Status</th><th>Date</th></tr></thead>
-          <tbody id="certTable"></tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="certificate-paper">
-          <div class="cert-head">
-            <div><div class="cert-kicker">CERTIFICATE</div><h3 id="certStandard">Gold Standard</h3></div>
-            <div class="cert-badge">VERIFIED</div>
-          </div>
-          <div class="cert-project" id="certProject">Western Kenya Clean Cooking Project</div>
-          <div class="cert-tonnes" id="certTonnes">120,000 tCO₂e</div>
-          <div class="cert-sub">Carbon Credits Issued / Held</div>
-          <div class="cert-grid">
-            <div><b>Issuance Date</b><br><span id="certDate">20 Jan 2026</span></div>
-            <div><b>Standard</b><br><span id="certStd2">Gold Standard</span></div>
-            <div><b>Project ID</b><br><span id="certPid">GS 13244</span></div>
-          </div>
-          <div class="cert-sign">
-            <div><div class="signature">Verified</div><div style="font-size:12px;color:rgba(0,0,0,.5)">Independent verification complete</div></div>
-            <div class="seal">VERIFIED<br>CREDIT</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section id="certificates" class="hidden">
+<div class="grid2">
+<div class="card"><h2 class="section-title">Certificate archive</h2><table class="table"><thead><tr><th>Certificate</th><th>Project</th><th>Credits</th><th>Status</th><th>Date</th></tr></thead><tbody id="certTable"></tbody></table></div>
+<div class="card"><div class="certificate-paper">
+<div class="cert-head"><div><div class="cert-kicker">CERTIFICATE</div><h3 id="certStandard"></h3></div><div class="cert-badge">VERIFIED</div></div>
+<div class="cert-project" id="certProject"></div><div class="cert-tonnes" id="certTonnes"></div><div class="cert-sub">Carbon Credits Issued / Held</div>
+<div class="cert-grid"><div><b>Issuance Date</b><br><span id="certDate"></span></div><div><b>Standard</b><br><span id="certStd2"></span></div><div><b>Project ID</b><br><span id="certPid"></span></div></div>
+<div style="display:flex;justify-content:space-between;align-items:end;margin-top:38px"><div style="font-family:Georgia,serif;font-size:32px;font-style:italic">Verified</div><div class="seal">VERIFIED<br>CREDIT</div></div>
+</div></div>
+</div>
+</section>
 </main>
 </div>
 
 <script>
 const projects=[
-{icon:"🔥",name:"Western Kenya Clean Cooking",full:"Western Kenya Clean Cooking Project",location:"Kisumu & Homa Bay, Kenya",type:"Improved Cookstoves",credits:"120,000",standard:"Gold Standard",status:"Verified",registry:"GS-13244-2025",vintage:"2025",verified:"Jan 2026",report:"VERST-WKCCP-R-2025-001",hash:"sha256:a7f3e9cdb5a1e82f944b7e9b2f4d9c3",story:"Improved cookstoves distributed across Kisumu and Homa Bay, reducing reliance on traditional biomass while improving household air quality and generating verified climate value.",image:"https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1200&q=85"},
-{icon:"🌱",name:"Nakuru Soil Carbon",full:"Nakuru Soil Carbon Programme",location:"Nakuru County, Kenya",type:"Soil Carbon / Regenerative Agriculture",credits:"32,500",standard:"Verra VCS",status:"Verified",registry:"VCS-90421-2025",vintage:"2025",verified:"Dec 2025",report:"VERST-NSC-R-2025-002",hash:"sha256:b42a91e0ddc39072aa8e9d5f712c0a11",story:"A soil carbon programme supporting regenerative practices, improved soil health, and measurable carbon outcomes across participating farms in Nakuru County.",image:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85"},
-{icon:"🌳",name:"Aberdare Forest Restoration",full:"Aberdare Forest Restoration Project",location:"Aberdare Range, Kenya",type:"Forest Restoration",credits:"18,000",standard:"Plan Vivo",status:"Retired",registry:"PV-ABR-7781-2024",vintage:"2024",verified:"Oct 2024",report:"VERST-AFR-R-2024-009",hash:"sha256:cc72b7a1d90e4452fc17a88bb703ae12",story:"Forest restoration and community conservation support around the Aberdare ecosystem, protecting biodiversity and strengthening long-term climate resilience.",image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85"},
-{icon:"🌊",name:"Lake Victoria Blue Carbon",full:"Lake Victoria Blue Carbon Project",location:"Lake Victoria Basin, Kenya",type:"Wetland / Blue Carbon",credits:"9,800",standard:"Gold Standard",status:"Verified",registry:"GS-BC-5582-2025",vintage:"2025",verified:"Nov 2025",report:"VERST-LVBC-R-2025-004",hash:"sha256:e3a8a431ff7b20e782ad8f117bda9c92",story:"Wetland and shoreline restoration project designed to protect water ecosystems, strengthen community livelihoods, and generate verified blue carbon outcomes.",image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85"},
-{icon:"☀️",name:"Turkana Solar Mini-Grid",full:"Turkana Solar Mini-Grid Project",location:"Turkana County, Kenya",type:"Renewable Energy Access",credits:"4,200",standard:"Verra VCS",status:"Verified",registry:"VCS-TUR-2290-2025",vintage:"2025",verified:"Sep 2025",report:"VERST-TSMG-R-2025-005",hash:"sha256:91ae8f1d4e770fc0229bd44b3d9810bc",story:"Solar mini-grid deployment improving clean energy access in Turkana while reducing diesel reliance and creating measurable emissions reductions.",image:"https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=85"}
+{icon:"🔥",name:"Western Kenya Clean Cooking",full:"Western Kenya Clean Cooking Project",location:"Kisumu & Homa Bay, Kenya",type:"Improved Cookstoves",credits:"120,000",standard:"Gold Standard",status:"Verified",registry:"GS-13244-2025",vintage:"2025",verified:"Jan 2026",report:"VERST-WKCCP-R-2025-001",hash:"sha256:a7f3e9cdb5a1e82f944b7e9b2f4d9c3",story:"Improved cookstoves distributed across Kisumu and Homa Bay, reducing reliance on traditional biomass while improving household air quality and generating verified climate value.",image:"https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1200&q=85",
+mrv:[
+["🧾","Household Baseline","01 Aug 2025","Field Enumerators","Baseline household cooking methods, fuel usage and GPS records were collected before stove deployment.","Baseline dataset fingerprinted","sha256:ccook-base-91f0"],
+["🔥","Stove Distribution","18 Aug 2025","Distribution Partners","Improved cookstoves were issued with household IDs, serial records and signed delivery confirmations.","Distribution record anchored","sha256:ccook-dist-a82b"],
+["📱","Usage Monitoring","15 Oct 2025","Verst Carbon Field Team","Stove usage checks, sample surveys and fuel saving calculations were compiled for MRV reporting.","Usage monitoring hash created","sha256:ccook-use-44e2"],
+["📄","MRV Report Submitted","10 Nov 2025","Verst Carbon MRV Team","Monitoring data was compiled into the approved clean cooking methodology report.","Report fingerprint created","sha256:ccook-report-d9c3"],
+["✅","Independent Verification","05 Dec 2025","Third-party Verifier","Verifier reviewed usage evidence, sampling logic and emissions reduction calculations.","Verification event recorded","sha256:ccook-ver-6bb0"],
+["🏅","Credits Issued","20 Jan 2026","Gold Standard Registry","Credits were issued and linked to the verified project record.","Certificate linked","sha256:ccook-cert-102e"]
+]},
+{icon:"🌱",name:"Nakuru Soil Carbon",full:"Nakuru Soil Carbon Programme",location:"Nakuru County, Kenya",type:"Soil Carbon / Regenerative Agriculture",credits:"32,500",standard:"Verra VCS",status:"Verified",registry:"VCS-90421-2025",vintage:"2025",verified:"Dec 2025",report:"VERST-NSC-R-2025-002",hash:"sha256:b42a91e0ddc39072aa8e9d5f712c0a11",story:"A soil carbon programme supporting regenerative practices, improved soil health, and measurable carbon outcomes across participating farms in Nakuru County.",image:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85",
+mrv:[
+["🧪","Baseline Soil Sampling","03 Apr 2025","Soil Lab Team","Initial soil samples were collected from participating farms to establish baseline organic carbon levels.","Baseline lab records anchored","sha256:soil-base-2f91"],
+["🚜","Farm Practice Tracking","May–Sep 2025","Agronomy Team","Regenerative practices were tracked, including cover crops, residue management and reduced tillage.","Practice log fingerprinted","sha256:soil-practice-882a"],
+["🔬","Lab Testing","22 Oct 2025","Independent Lab","Follow-up samples were tested and matched against field plots and farm IDs.","Lab result hash created","sha256:soil-lab-71da"],
+["📈","Carbon Modelling","04 Nov 2025","MRV Modelling Team","Soil carbon changes were modelled using approved methodology and sampling data.","Model output anchored","sha256:soil-model-aa0c"],
+["✅","Verification Review","12 Dec 2025","VCS Verifier","Verifier reviewed sampling, farm records, model assumptions and calculations.","Verification record created","sha256:soil-ver-0a11"],
+["🏅","Credits Issued","28 Dec 2025","Verra Registry","Verified soil carbon credits were issued and linked to the registry reference.","Certificate linked","sha256:soil-cert-9042"]
+]},
+{icon:"🌳",name:"Aberdare Forest Restoration",full:"Aberdare Forest Restoration Project",location:"Aberdare Range, Kenya",type:"Forest Restoration",credits:"18,000",standard:"Plan Vivo",status:"Retired",registry:"PV-ABR-7781-2024",vintage:"2024",verified:"Oct 2024",report:"VERST-AFR-R-2024-009",hash:"sha256:cc72b7a1d90e4452fc17a88bb703ae12",story:"Forest restoration and community conservation support around the Aberdare ecosystem, protecting biodiversity and strengthening long-term climate resilience.",image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85",
+mrv:[
+["🗺️","Baseline Mapping","15 Feb 2024","GIS Team","Restoration zones were mapped with boundaries, land status and baseline vegetation condition.","GIS boundary hash anchored","sha256:forest-map-7701"],
+["🌱","Tree Planting Records","Apr–Jun 2024","Community Restoration Teams","Seedlings planted, species mix, plot IDs and community records were logged.","Planting records fingerprinted","sha256:forest-plant-9b20"],
+["🌳","Survival Monitoring","20 Aug 2024","Forest Monitoring Team","Survival rate checks and field photos were collected across sample plots.","Survival dataset anchored","sha256:forest-surv-338a"],
+["🛰️","Remote Sensing Check","12 Sep 2024","GIS / Drone Team","Satellite and drone checks validated canopy recovery and restoration boundaries.","Remote sensing proof created","sha256:forest-rs-17af"],
+["✅","Verifier Review","01 Oct 2024","Plan Vivo Reviewer","Verifier reviewed planting records, survival rates, maps and community benefit evidence.","Verification event recorded","sha256:forest-ver-ae12"],
+["♻️","Credits Retired","20 Oct 2024","Portfolio Account","Credits were retired against buyer account impact claims.","Retirement proof linked","sha256:forest-ret-2024"]
+]},
+{icon:"🌊",name:"Lake Victoria Blue Carbon",full:"Lake Victoria Blue Carbon Project",location:"Lake Victoria Basin, Kenya",type:"Wetland / Blue Carbon",credits:"9,800",standard:"Gold Standard",status:"Verified",registry:"GS-BC-5582-2025",vintage:"2025",verified:"Nov 2025",report:"VERST-LVBC-R-2025-004",hash:"sha256:e3a8a431ff7b20e782ad8f117bda9c92",story:"Wetland and shoreline restoration project designed to protect water ecosystems, strengthen community livelihoods, and generate verified blue carbon outcomes.",image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85",
+mrv:[
+["🌊","Wetland Boundary Mapping","03 Mar 2025","Blue Carbon Field Team","Wetland zones and shoreline boundaries were mapped with GPS and imagery.","Boundary dataset anchored","sha256:blue-map-5582"],
+["🧪","Carbon Stock Sampling","18 Apr 2025","Ecology Team","Biomass and soil carbon samples were collected across wetland plots.","Sampling evidence fingerprinted","sha256:blue-sample-819d"],
+["👥","Community Activity Logs","May–Aug 2025","Community Partners","Restoration, protection and community activity logs were compiled monthly.","Community log hash created","sha256:blue-community-22ac"],
+["🛰️","Remote Sensing Review","10 Sep 2025","GIS Team","Remote sensing checked wetland condition, restoration area and encroachment risk.","Remote sensing record anchored","sha256:blue-rs-91fd"],
+["✅","Verification Review","08 Nov 2025","Gold Standard Verifier","Verifier reviewed carbon stock calculations, maps and community evidence.","Verification record created","sha256:blue-ver-c92"],
+["🏅","Credits Issued","24 Nov 2025","Gold Standard Registry","Blue carbon credits were issued and linked to registry reference.","Certificate linked","sha256:blue-cert-5582"]
+]},
+{icon:"☀️",name:"Turkana Solar Mini-Grid",full:"Turkana Solar Mini-Grid Project",location:"Turkana County, Kenya",type:"Renewable Energy Access",credits:"4,200",standard:"Verra VCS",status:"Verified",registry:"VCS-TUR-2290-2025",vintage:"2025",verified:"Sep 2025",report:"VERST-TSMG-R-2025-005",hash:"sha256:91ae8f1d4e770fc0229bd44b3d9810bc",story:"Solar mini-grid deployment improving clean energy access in Turkana while reducing diesel reliance and creating measurable emissions reductions.",image:"https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=85",
+mrv:[
+["⚡","Meter Data Capture","01 Jun 2025","Energy Operator","Solar generation and consumption meter readings were captured from mini-grid systems.","Meter dataset anchored","sha256:solar-meter-110d"],
+["⛽","Diesel Baseline","12 Jun 2025","Energy MRV Team","Historic diesel generation and displacement assumptions were documented.","Baseline evidence hash created","sha256:solar-diesel-77e2"],
+["🔌","Generation Monitoring","Jun–Aug 2025","Mini-grid Operator","Monthly kWh generation data was logged and reconciled against meter records.","Generation log fingerprinted","sha256:solar-gen-3d98"],
+["📊","Emissions Calculation","05 Sep 2025","MRV Analyst","Diesel displacement and emissions reductions were calculated using approved factors.","Calculation output anchored","sha256:solar-calc-bc31"],
+["✅","Verifier Audit","20 Sep 2025","VCS Verifier","Verifier checked meter records, baseline assumptions and emissions calculations.","Verification event recorded","sha256:solar-ver-810b"],
+["🏅","Credits Issued","30 Sep 2025","Verra Registry","Renewable energy credits were issued and linked to the project registry record.","Certificate linked","sha256:solar-cert-2290"]
+]}
 ];
 
 const certs=[
@@ -243,20 +215,14 @@ const certs=[
 ["CERT-2025-005","Turkana Solar Mini-Grid","4,200","Verified","Sep 2025"]
 ];
 
-const steps=[
-["📊","Monitoring Completed","15 Oct 2025","Verst Carbon Field Team","Field data, activity records, GPS checks and monitoring logs were collected and prepared for reporting.","Field dataset hash anchored","sha256:9c1f34a8e21d19f0c44b52d4ab7e8a42"],
-["📄","Report Submitted","10 Nov 2025","Verst Carbon MRV Team","Monitoring data was compiled into a structured MRV report using the relevant approved carbon methodology.","MRV report fingerprint created","sha256:a7f3e9cdb5a1e82f944b7e9b2f4d9c3"],
-["✅","Independent Verification","05 Dec 2025","Third-party Verifier","The submitted report and supporting data were reviewed, checked and approved against the relevant standard.","Verification event recorded","sha256:f182c22d6cb9d10043b8e89e6bb0"],
-["🏅","Credits Issued","20 Jan 2026","Carbon Registry","Credits were issued for the relevant vintage and linked back to the verified project record.","Certificate and registry reference linked","sha256:51ac18f70cb992e4c9102e102e"]
-];
-
 let selected=0;
 
 function show(id,btn){
 ["portfolio","projects","timeline","report","certificates"].forEach(x=>document.getElementById(x).classList.add("hidden"));
 document.getElementById(id).classList.remove("hidden");
 document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-if(btn)btn.classList.add("active");else document.querySelectorAll("nav button").forEach(b=>{if(b.textContent.toLowerCase().includes(id==="certificates"?"certificates":id))b.classList.add("active")});
+if(btn)btn.classList.add("active");
+else document.querySelectorAll("nav button").forEach(b=>{if((id==="certificates"&&b.textContent.toLowerCase().includes("certificates"))||(id==="timeline"&&b.textContent.toLowerCase().includes("mrv"))||b.textContent.toLowerCase().includes(id))b.classList.add("active")});
 window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -293,17 +259,21 @@ document.getElementById("certStandard").innerText=p.standard;
 document.getElementById("certStd2").innerText=p.standard;
 document.getElementById("certPid").innerText=p.registry;
 document.getElementById("certDate").innerText=p.verified;
+buildTimeline();
 }
 
 function buildTimeline(){
-document.getElementById("timelineSteps").innerHTML=steps.map((s,i)=>`
+const p=projects[selected];
+document.getElementById("timelineTitle").innerText=p.full+" — MRV Workflow";
+document.getElementById("timelineIntro").innerText="This workflow changes by project type. The proof trail for cookstoves is not the same as soil carbon, forest restoration, blue carbon or renewable energy.";
+document.getElementById("timelineSteps").innerHTML=p.mrv.map((s,i)=>`
 <div class="step" onclick="setStep(${i})"><div class="step-icon">${s[0]}</div><b>${s[1]}</b><div class="green">${s[2]}</div><div class="small">${s[3]}</div></div>`).join("");
 setStep(0);
 }
 
 function setStep(i){
 document.querySelectorAll("#timelineSteps .step").forEach((el,idx)=>el.classList.toggle("active",idx===i));
-const s=steps[i];
+const s=projects[selected].mrv[i];
 document.getElementById("stepDetail").innerHTML=`
 <div style="font-size:48px;margin-bottom:12px">${s[0]}</div>
 <h2 style="color:white;font-size:32px;margin:0 0 10px;text-transform:none;letter-spacing:-.5px">${s[1]}</h2>
@@ -319,7 +289,7 @@ document.getElementById("certTable").innerHTML=certs.map(c=>`
 <tr><td><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[2]}</td><td><span class="status ${c[3]==="Retired"?"retired":"verified"}">${c[3]}</span></td><td>${c[4]}</td></tr>`).join("");
 }
 
-renderProjects();buildTimeline();renderCerts();selectProject(0);
+renderProjects();renderCerts();selectProject(0);
 </script>
 </body>
 </html>
